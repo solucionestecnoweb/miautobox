@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+
+    <record id="view_stock_picking_form_group_inherit_perxtra" model="ir.ui.view">
+        <field name="name">stock.picking.groups.permissions.extra</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">    
+                <attribute name="duplicate">0</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_scrap']" position="attributes">    
+                <attribute name="groups">eu_groups_perssions.scrap_venta</attribute>
+            </xpath>
+            <xpath expr="//button[@name='335']" position="attributes">    
+                <attribute name="groups">eu_groups_perssions.devolver_stock_eu</attribute>
+            </xpath>
+<!-- si le pongo un usuario que vea todo pierde la capacidad de eliminar -->
+        </field>
+    </record>
+    
+    <!-- <record id="view_stock_picking_form_group_inherit_perxtra" model="ir.ui.view">
+        <field name="name">stock.picking.groups.permissions.extra</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="abnet_stock_custom.product_kardex_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">    
+                <attribute name="duplicate">0</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_scrap']" position="replace">
+                <button name="button_scrap" type="object" groups="eu_groups_perssions.scrap_venta" string="Scrap" attrs="{'invisible': ['|', '&amp;', ('picking_type_code', '=', 'incoming'), ('state', '!=', 'done'), '&amp;', ('picking_type_code', '=', 'outgoing'), ('state', '=', 'done')]}"/>
+            </xpath>
+
+        </field>
+    </record> -->
+    
+    
+</odoo>

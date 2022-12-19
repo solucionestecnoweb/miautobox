@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_category_contact_eu_permission">
+            <field name="name">Permisos contacto extendidos</field>
+            <field name="sequence">80</field>
+        </record>
+        <record model="ir.module.category" id="module_category_crm_eu_permission">
+            <field name="name">Permisos CRM extendidos</field>
+            <field name="sequence">85</field>
+        </record>
+        <record model="ir.module.category" id="module_sales_crm_eu_permission">
+            <field name="name">Permisos Ventas extendidos</field>
+            <field name="sequence">90</field>
+        </record>
+
+        <record model="ir.module.category" id="module_menus_eu_permission">
+            <field name="name">Permisos extendidos Menus</field>
+            <field name="sequence">90</field>
+        </record>
+        <record model="ir.module.category" id="module_facturacion_eu_permission">
+            <field name="name">Permisos extendidos Facturación</field>
+            <field name="sequence">90</field>
+        </record>
+        <record model="ir.module.category" id="module_inventory_eu_permission">
+            <field name="name">Permisos extendidos Inventario</field>
+            <field name="sequence">90</field>
+        </record>
+
+
+        <!-- menus -->
+        <record id="crm_menu_group_eu" model="res.groups">
+            <field name="name">Ver menu: CRM</field>
+            <field name="category_id" ref="eu_groups_perssions.module_menus_eu_permission"/>
+
+        </record>
+        <record id="data_cleaning_menu_group_eu" model="res.groups">
+            <field name="name">Ver menu: Data Cleaning</field>
+            <field name="category_id" ref="eu_groups_perssions.module_menus_eu_permission"/>
+
+        </record>
+        <record id="facturacion_menu_group_eu" model="res.groups">
+            <field name="name">Ver menu: Facturación</field>
+            <field name="category_id" ref="eu_groups_perssions.module_menus_eu_permission"/>
+
+        </record>
+        <record id="rastreo_enlaces_menu_group_eu" model="res.groups">
+            <field name="name">Ver menu: Rastreo enlaces</field>
+            <field name="category_id" ref="eu_groups_perssions.module_menus_eu_permission"/>
+
+        </record>
+        <record id="marketing_email_menu_group_eu" model="res.groups">
+            <field name="name">Ver menu: Marketing email</field>
+            <field name="category_id" ref="eu_groups_perssions.module_menus_eu_permission"/>
+
+        </record>
+        <record id="website_menu_group_eu" model="res.groups">
+            <field name="name">Ver menu: Website</field>
+            <field name="category_id" ref="eu_groups_perssions.module_menus_eu_permission"/>
+
+        </record>
+        <record id="stock_menu_group_eu" model="res.groups">
+            <field name="name">Ver menu: Inventario</field>
+            <field name="category_id" ref="eu_groups_perssions.module_menus_eu_permission"/>
+
+        </record>
+        <record id="aplications_menu_group_eu" model="res.groups">
+            <field name="name">Ver menu: Aplicaciones</field>
+            <field name="category_id" ref="eu_groups_perssions.module_menus_eu_permission"/>
+
+        </record>
+        <!-- contactos -->
+        <record id="unlink_contacts" model="res.groups">
+            <field name="name">Eliminar Contactos</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_contact_eu_permission"/>
+
+        </record>
+
+        <record id="fusion_contacts" model="res.groups">
+            <field name="name">Fusionar</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_contact_eu_permission"/>
+
+            
+        </record>
+        <record id="archive_contacts" model="res.groups">
+            <field name="name">Archivate/Active Contactos</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_contact_eu_permission"/>
+
+            
+        </record>
+        <record id="archive_products_eu" model="res.groups">
+            <field name="name">Archivate/Active Products</field>
+            
+        </record>
+        <record id="previsto_previsto_eu" model="res.groups">
+            <field name="name">acceso a previsto</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_contact_eu_permission"/>
+
+            
+        </record>
+        <!-- CRM -->
+        <record id="crm_create_edit_eu" model="res.groups">
+            <field name="name">CRM: Crear/editar</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_crm_eu_permission"/>
+
+            
+        </record>
+        <record id="crm_lead_menu_my_activities_eu" model="res.groups">
+            <field name="name">CRM: actividades</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_crm_eu_permission"/>
+
+            
+        </record>
+        <record id="crm_menu_reports_eu" model="res.groups">
+            <field name="name">CRM: reportes</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_crm_eu_permission"/>
+
+            
+        </record>
+        <record id="crm_menu_config_eu" model="res.groups">
+            <field name="name">CRM: configuración</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_crm_eu_permission"/>
+
+            
+        </record>
+        <record id="menu_crm_config_opportunity_eu" model="res.groups">
+            <field name="name">CRM: configuración oportunidades</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_crm_eu_permission"/>
+
+            
+        </record>
+        <record id="menu_crm_config_lead_eu" model="res.groups">
+            <field name="name">CRM: configuración leads</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_crm_eu_permission"/>
+
+            
+        </record>
+        <record id="crm_mejorar_eu" model="res.groups">
+            <field name="name">CRM: Mejorar</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_crm_eu_permission"/>
+
+            
+        </record>
+        <record id="crm_won_eu" model="res.groups">
+            <field name="name">CRM: Marcar Ganado</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_crm_eu_permission"/>
+
+            
+        </record>
+        <record id="crm_lost_eu" model="res.groups">
+            <field name="name">CRM: Marcar Perdido</field>
+            <field name="category_id" ref="eu_groups_perssions.module_category_crm_eu_permission"/>
+
+            
+        </record>
+
+
+
+
+        <!-- ventas -->
+        <record id="sales_team.group_sale_salesman_all_leads" model="res.groups">
+            <field name="name">User: All Documents (readonly)</field>
+            <field name="category_id" ref="base.module_category_sales_sales"/>
+            <field name="implied_ids" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+            <field name="comment">the user will have access to all records of everyone in the sales application.</field>
+        </record>
+        <record id="group_sale_salesman_all_leads_write_edit" model="res.groups">
+            <field name="name">User: All Documents </field>
+            <field name="category_id" ref="base.module_category_sales_sales"/>
+            <field name="implied_ids" eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"/>
+            <field name="comment">the user will have access to all records of everyone in the sales application and allow its edition.</field>
+        </record>
+        <record id="sales_team.group_sale_manager" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="comment">the user will have an access to the sales configuration as well as statistic reports.</field>
+            <field name="category_id" ref="base.module_category_sales_sales"/>
+            <field name="implied_ids" eval="[(4, ref('eu_groups_perssions.group_sale_salesman_all_leads_write_edit'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record id="ventas_send_cart_recovery" model="res.groups">
+            <field name="name">Website: Correo de recuperacion de carrito</field>
+            
+        </record>
+
+        <record id="group_turn_presupuesto" model="res.groups">
+            <field name="name">Ventas: Convertir Presupuesto</field>
+            <field name="category_id" ref="eu_groups_perssions.module_sales_crm_eu_permission"/>
+
+        </record>
+
+        <record id="group_confirm_pp_eu" model="res.groups">
+            <field name="name">Ventas: Confirmar Presupuesto/Pedido</field>
+            <field name="category_id" ref="eu_groups_perssions.module_sales_crm_eu_permission"/>
+
+        </record>
+
+        <record id="generate_link_pay" model="res.groups">
+            <field name="name">Generar enlace pago</field>
+            
+        </record>
+        <record id="change_return_note_credit" model="res.groups">
+            <field name="name">Cambiar a reembolso/Nota de Credito</field>
+            
+        </record>
+
+        <record id="scrap_venta" model="res.groups">
+            <field name="name">Transferencia e Inventario: Desechar</field>
+            
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+        <record id="lot_stock_num_eu" model="res.groups">
+            <field name="name">Inventario: Lote/Número de serie</field>
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+        <record id="Facturar_ventas_eu" model="res.groups">
+            <field name="name">Ventas: Facturar</field>
+            <field name="category_id" ref="eu_groups_perssions.module_sales_crm_eu_permission"/>
+
+            
+        </record>
+
+        <record id="in_hand_eu" model="res.groups">
+            <field name="name">Ventas: A mano</field>
+            <field name="category_id" ref="eu_groups_perssions.module_sales_crm_eu_permission"/>
+
+        </record>
+        <record id="sale_reports_see_eu" model="res.groups">
+                <field name="name">Ventas: Reportes</field>
+                <field name="category_id" ref="eu_groups_perssions.module_sales_crm_eu_permission"/>
+
+                
+        </record>
+            <!-- Facturación -->
+            
+            <record id="factura_payments_eu" model="res.groups">
+                <field name="name">Facturación: Pagos</field>
+                <field name="category_id" ref="eu_groups_perssions.module_facturacion_eu_permission"/>
+
+            </record>
+            <record id="factura_payments_invoice_eu" model="res.groups">
+                <field name="name">Facturación: Pagos desde factura</field>
+                <field name="category_id" ref="eu_groups_perssions.module_facturacion_eu_permission"/>
+
+            </record>
+            
+
+
+
+            <!-- inventario -->
+        
+        <record id="previsto_reabastecer_eu" model="res.groups">
+            <field name="name">Inventario: Reabastecer y actualizar cantidad</field>
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+        <record id="mov_productos_eu" model="res.groups">
+            <field name="name">Inventario: Movimiento productos</field>
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+        <record id="reg_sal_eu" model="res.groups">
+            <field name="name">Inventario:crear regla abastecimiento</field>
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+        <record id="categ_show_eu" model="res.groups">
+            <field name="name">Inventario: mostrar categorias</field>
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+        <record id="routes_diagram_eu" model="res.groups">
+            <field name="name">Inventario: Diagrama rutas</field>
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+        <record id="product_inventory_location_eu" model="res.groups">
+            <field name="name">Inventario: Localización de Inventario</field>
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+        <record id="del_ajust_stock_eu" model="res.groups">
+            <field name="name">Inventario: Eliminar Ajuste de inventario</field>
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+        <record id="kardex_create_eliminate" model="res.groups">
+            <field name="name">Kardex: Crear y eliminar</field>
+            
+        </record>
+        <record id="bloquear_pedido_eu" model="res.groups">
+            <field name="name">Bloquear Pedidos</field>
+            
+        </record>
+        <record id="compartir_venta_eu" model="res.groups">
+            <field name="name">Ventas: compartir</field>
+            <field name="category_id" ref="eu_groups_perssions.module_sales_crm_eu_permission"/>
+
+            
+        </record>
+
+        <record id="marcar_presupuesto_enviado_venta_eu" model="res.groups">
+            <field name="name">Ventas: marcar presupuesto enviado</field>
+            <field name="category_id" ref="eu_groups_perssions.module_sales_crm_eu_permission"/>
+
+            
+        </record>
+
+        <record id="vendidos" model="res.groups">
+            <field name="name">Medidas, Invertir Ejes, Expandir todo, Download xls</field>
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+        <record id="devolver_stock_eu" model="res.groups">
+            <field name="name">Entrega: devolver</field>
+            
+        </record>
+
+        <record id="reg_abasteci_crear" model="res.groups">
+            <field name="name">Crear reglas de abastecimiento</field>
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+        <record id="reg_abasteci_crear" model="res.groups">
+            <field name="name">Crear reglas de abastecimiento</field>
+            <field name="category_id" ref="eu_groups_perssions.module_inventory_eu_permission"/>
+
+            
+        </record>
+
+        <record id="group_account_invoice_reset_to_draft" model="res.groups">
+            <field name="name">Facturación: Pasar a borrador</field>
+            <field name="implied_ids" eval="[(4, ref('account.group_account_invoice'))]"/>
+            <field name="category_id" ref="eu_groups_perssions.module_facturacion_eu_permission"/>
+
+        </record>
+        <record id="compartir_facturacion_eu" model="res.groups">
+            <field name="name">Facturación: compartir</field>
+            <field name="category_id" ref="eu_groups_perssions.module_facturacion_eu_permission"/>
+
+        </record>
+        <record id="eliminar_facturacion_eu" model="res.groups">
+            <field name="name">Facturación: eliminar</field>     
+            <field name="implied_ids" eval="[(4, ref('account.group_account_invoice'))]"/>
+            <field name="category_id" ref="eu_groups_perssions.module_facturacion_eu_permission"/>
+
+   
+        </record>
+        <record id="proveedores_facturacion_eu" model="res.groups">
+            <field name="name">Facturación: Ver Menu Proveedores</field>     
+            <field name="implied_ids" eval="[(4, ref('account.group_account_invoice'))]"/>
+            <field name="category_id" ref="eu_groups_perssions.module_facturacion_eu_permission"/>
+
+   
+        </record>
+        <record id="cargar_facturacion_eu" model="res.groups">
+            <field name="name">Facturación: Boton Cargar</field>     
+            <field name="implied_ids" eval="[(4, ref('account.group_account_invoice'))]"/>
+            <field name="category_id" ref="eu_groups_perssions.module_facturacion_eu_permission"/>
+
+   
+        </record>
+
+        
+        <!-- Portal -->
+        
+        <record id="portal_compartir" model="res.groups">
+            <field name="name">Compartir permiso</field>
+            
+        </record>
+        <record id="portal_otorgar_acceso_eu" model="res.groups">
+            <field name="name">Otorgar acceso al portal</field>
+            
+        </record>
+
+        <!-- cosas -->
+        <record id="duplica_eu" model="res.groups">
+            <field name="name">Duplicar</field>
+            
+        </record>
+        <record id="sms_composer_eu" model="res.groups">
+            <field name="name">Envio de mensajes</field>
+            
+        </record>
+        
+        <record id="group_FACTURACION" model="res.groups">
+            <field name="name">FACTURACION: cajero</field>
+            
+        </record>
+    
+        <record id="group_ASVENT" model="res.groups">
+            <field name="name">ASESOR VENTAS</field>
+        </record>
+    
+        <record id="group_CALLC" model="res.groups">
+            <field name="name">CALL CENTER</field>
+        </record>
+    
+        <record id="group_CORDCALL" model="res.groups">
+            <field name="name">COORDINADOR CALL CENTER</field>
+        </record>
+    
+        <record id="group_LOGISTICA" model="res.groups">
+            <field name="name">LOGISTICA</field>
+        </record>
+    
+        <record id="group_CONTESO" model="res.groups">
+            <field name="name">CONTABILIDAD Y TESORERIA</field>
+        </record>
+    
+        
+
+    </data>
+
+</odoo>

@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- menuitems -->
+    <menuitem id="sale.menu_sale_report"
+            name="Reporting"
+            parent="sale.sale_menu_root"
+            sequence="5"
+            groups="sales_team.group_sale_manager,eu_groups_perssions.sale_reports_see_eu"/>
+    
+<!-- Vistas -->
+    <record id="view_product_template_categ_hide_venta_inherit_partner" model="ir.ui.view">
+        <field name="name">product.template.form.categ_hide</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='categ_id']" position="replace">
+                <field name="categ_id" groups="eu_groups_perssions.categ_show_eu" position="after">
+                    <field name="default_code" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
+                    <field name="barcode" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
+                    </field>
+            </xpath>
+            
+
+            
+        </field>
+    </record>
+    <record id="view_product_product_categ_hide_venta_inherit_partner" model="ir.ui.view">
+        <field name="name">product.product.form.categ_hide</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='categ_id']" position="replace">
+                    <field name="categ_id" groups="eu_groups_perssions.categ_show_eu" string="Product Category"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_product_product_graph_hide_stock_inherit_eu" model="ir.ui.view">
+        <field name="name">product.template.form.hide_graph</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.view_template_property_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//button[@id='stock.view_diagram_button']" position="replace">
+                <button id="stock.view_diagram_button" string="View Diagram" type="action" name="%(stock.action_open_routes)d" icon="fa-arrow-right"
+                attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}" groups="eu_groups_perssions.routes_diagram_eu"
+                class="btn btn-link pt-0" context="{'default_product_tmpl_id': id}"/>
+            </xpath>
+            <xpath expr="//group[@name='stock_property']" position="replace">
+                <group string="Counterpart Locations" name="stock_property" groups="eu_groups_perssions.product_inventory_location_eu">
+                    <field name="property_stock_production"/>
+                    <field name="property_stock_inventory"/>
+                </group>
+            </xpath>
+            
+        </field>
+    </record>
+
+    
+
+    <record id="view_product_template_btts_venta_inherit_partner" model="ir.ui.view">
+        <field name="name">product.template.form.superbutton</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='338']" position="attributes">
+                <attribute name="groups">eu_groups_perssions.previsto_reabastecer_eu</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_update_quantity_on_hand']" position="attributes">
+                <attribute name="groups" >eu_groups_perssions.previsto_reabastecer_eu</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_view_stock_move_lines']" position="attributes">
+                <attribute name="groups" >eu_groups_perssions.mov_productos_eu</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_view_orderpoints']" position="attributes">
+                <attribute name="groups" >eu_groups_perssions.reg_sal_eu</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_product_tmpl_forecast_report']" position="attributes">
+                <attribute name="groups" >eu_groups_perssions.previsto_previsto_eu</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_product_btts_venta_inherit_partner" model="ir.ui.view">
+        <field name="name">product.product.form.superbutton</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//button[@name='338']" position="attributes">
+                <attribute name="groups">eu_groups_perssions.previsto_reabastecer_eu</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_update_quantity_on_hand']" position="attributes">
+                <attribute name="groups" >eu_groups_perssions.previsto_reabastecer_eu</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_view_stock_move_lines']" position="attributes">
+                <attribute name="groups" >eu_groups_perssions.mov_productos_eu</attribute>
+            </xpath>
+            
+            <xpath expr="//button[@name='action_view_orderpoints']" position="attributes">
+                <attribute name="groups" >eu_groups_perssions.reg_sal_eu</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_product_forecast_report']" position="attributes">
+                <attribute name="groups" >eu_groups_perssions.previsto_previsto_eu</attribute>
+            </xpath>
+        </field>
+    </record>
+    
+   
+</odoo>

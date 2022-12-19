@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_move_form_ab" model="ir.ui.view">
+            <field name="name">account_move</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_reference']" position="after">
+                    <field name="x_sff_flag" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="x_procesado_flag" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_date']" position="after">
+                    <field name="payment_acquirer" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="show_update_pricelist" invisible="1"/>
+                    <label for="pricelist_id" groups="product.group_product_pricelist"/>
+                    <div groups="product.group_product_pricelist"  class="o_row" >
+                        <field name="pricelist_id" options="{'no_open':True,'no_create': True}"
+                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                        />
+                        <button name="button_update_prices_from_pricelist" type="object"
+                                string=" Update Prices"
+                                help="Recompute all prices based on this pricelist"
+                                class="btn-link mb-1 px-0 oe_edit_only oe-inline" icon="fa-refresh"
+                                confirm="This will update all unit prices based on the currently set pricelist."
+                                style = "display: inline-block; float: right;"
+                                attrs="{'invisible': ['|', '|', '|', ('pricelist_id', '=', False),
+                                        ('show_update_pricelist', '=', False),
+                                        ('state', 'not in', ['draft']),
+                                        ('move_type', 'not in', ['out_invoice', 'out_refund', 'in_invoice', 'in_refund'])]}"
+                        />
+                    </div>
+                    <field name="rate" options="{'no_open':True,'no_create': True}" force_save="1"/>
+                </xpath>
+                 <xpath expr="//field[@name='invoice_date']" position="replace">
+                     <div name="fecha" class="o_row">
+                        <field name="invoice_date" nolabel="1" options="{'datepicker': {'warn_future': true}}"
+                           attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))],
+                                   'readonly': ['|', ('es_gerente_tienda_hdg','!=',True), ('state', '!=', 'draft')]}"
+                           class="oe_edit"/>
+                         <span class="oe_inline o_form_label mr-3 ml-2" >
+                            <field name="x_time" nolabel="1" widget="timepicker" options="{'step': '30', 'disableTextInput': false, 'scrollDefault': 'now'}"
+                                 attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))],
+                                           'readonly': ['|', ('es_gerente_tienda_hdg','!=',True), ('state', '!=', 'draft')]}"
+                                 class="oe_edit"/>
+                        </span>
+                     </div>
+                </xpath>
+                <xpath expr="//field[@name='invoice_date']" position="before">
+                    <field name="es_gerente_tienda_hdg" invisible="1" />
+                </xpath>
+               <xpath expr="//field[@name='currency_id']" position="attributes">
+                    <attribute name="attrs">{'readonly':True}</attribute>
+                    <attribute name="attrs">{'force_save':1}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="before">
+                    <field name="es_gerente_tienda_det" invisible="1" />
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="attributes">
+                    <attribute name="attrs">{'readonly' : [('es_gerente_tienda_det','!=',True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version ="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Sodexis
+     License OPL-1 (See LICENSE file for full copyright and licensing details). -->
+
+<odoo>
+    <record model="ir.ui.view" id="view_order_form_inherit">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="payment_acquirer" options="{'no_create': True}"
+                    domain="[('company_id', '=', company_id), ('state', '!=', 'disabled')]"/>
+                <field name="rate" options="{'no_open':True,'no_create': True}" force_save="1"/>
+                <field name="team_x_company_id" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
