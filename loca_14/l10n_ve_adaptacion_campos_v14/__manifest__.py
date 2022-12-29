@@ -10,9 +10,6 @@
         'depends': [
             'base',
             'account',
-            'purchase',
-            'sale_management',
-            'account_accountant',
             ],
         'data': [
             'views/account_move_view.xml',

@@ -69,6 +69,8 @@ class AccountMove(models.Model):
 
     def create_retention(self):
         active=False
+        base=0
+        cont=0
         if self.type in ('in_invoice','out_invoice','in_refund','out_refund','in_receipt','out_receipt'):#darrell
             if self.isrl_ret_id.id:
                 pass
@@ -94,11 +96,13 @@ class AccountMove(models.Model):
                             if item.concept_isrl_id:
                                 for rate in item.concept_isrl_id.rate_ids:
                                     #raise UserError(_('item.price_subtotal=%s ')%rate.min)
-                                    if self.partner_id.people_type == rate.people_type and  self.conv_div_nac(item.price_subtotal) > rate.min  :
+                                    if self.partner_id.people_type == rate.people_type and  self.conv_div_nac(item.price_subtotal) > rate.min :
+                                        #base = base+item.price_subtotal * (rate.subtotal / 100)
                                         base = item.price_subtotal * (rate.subtotal / 100)
                                         subtotal =  base * (rate.retention_percentage / 100)
                                         #raise UserError(_('base = %s')%base)
-                                        self.isrl_ret_id.lines_id = self.env['isrl.retention.invoice.line'].create({
+                                        #self.isrl_ret_id.lines_id = self.env['isrl.retention.invoice.line'].create({
+                                        self.env['isrl.retention.invoice.line'].create({
                                             'name': item.concept_isrl_id.id,
                                             'code':rate.code,
                                             'retention_id': self.isrl_ret_id.id,
@@ -123,7 +127,8 @@ class AccountMove(models.Model):
         valor_aux=0
         #raise UserError(_('moneda compañia: %s')%self.company_id.currency_id.id)
         if self.currency_id.id!=self.company_id.currency_id.id:
-            tasa= self.env['res.currency.rate'].search([('currency_id','=',self.currency_id.id),('name','<=',self.date)],order="name asc")
+            #tasa= self.env['res.currency.rate'].search([('currency_id','=',self.currency_id.id),('name','<=',self.date)],order="name asc")
+            tasa= self.env['res.currency.rate'].search([('currency_id','=',self.currency_id.id),('name','<=',self.invoice_date)],order="name asc")
             for det_tasa in tasa:
                 if fecha_contable_doc>=det_tasa.name:
                     valor_aux=det_tasa.rate
