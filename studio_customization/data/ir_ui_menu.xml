@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="studio_customization.maestros_63c3131e-258d-41f5-b939-e81d1a9faddb" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" eval="False"/>
+    <field name="active" eval="True"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="name">Maestros</field>
+    <field name="parent_id" eval="False"/>
+    <field name="sequence">10</field>
+    <field name="web_icon">fa fa-briefcase,#4dd0e1,#34495e</field>
+  </record>
+  <record id="studio_customization.maestros_configuraci_8565142b-bc79-41eb-bb6e-5e212b54acb4" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" eval="False"/>
+    <field name="active" eval="True"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="name">Configuración</field>
+    <field name="parent_id" ref="studio_customization.maestros_63c3131e-258d-41f5-b939-e81d1a9faddb"/>
+    <field name="sequence">100</field>
+    <field name="web_icon" eval="False"/>
+  </record>
+  <record id="studio_customization.maestros_configuraci_70f02048-5582-4bf6-a65d-6172b39a2265" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="studio_customization.xatributos_tags_d8ef6e3b-e781-4c72-9d6d-190cef06464c"/>
+    <field name="active" eval="True"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="name">xAtributos Tags</field>
+    <field name="parent_id" ref="studio_customization.maestros_configuraci_8565142b-bc79-41eb-bb6e-5e212b54acb4"/>
+    <field name="sequence">10</field>
+    <field name="web_icon" eval="False"/>
+  </record>
+  <record id="studio_customization.maestros_xatributos_d0b4e360-0672-4e6a-aea4-e7c4315a410e" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="studio_customization.xatributos_b11c5196-8b43-4fa8-a1ba-0fffa7b9a93b"/>
+    <field name="active" eval="True"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="name">xAtributos</field>
+    <field name="parent_id" ref="studio_customization.maestros_63c3131e-258d-41f5-b939-e81d1a9faddb"/>
+    <field name="sequence">10</field>
+    <field name="web_icon" eval="False"/>
+  </record>
+</odoo>

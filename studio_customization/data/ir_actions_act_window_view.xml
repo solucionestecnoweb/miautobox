@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="contacts.action_contacts_view_form" model="ir.actions.act_window.view" context="{'studio': True}">
+    <field name="act_window_id" ref="contacts.action_contacts"/>
+    <field name="multi" eval="False"/>
+    <field name="sequence">2</field>
+    <field name="view_id" ref="base.view_partner_form"/>
+    <field name="view_mode">form</field>
+  </record>
+  <record id="contacts.action_contacts_view_kanban" model="ir.actions.act_window.view" context="{'studio': True}">
+    <field name="act_window_id" ref="contacts.action_contacts"/>
+    <field name="multi" eval="False"/>
+    <field name="sequence">1</field>
+    <field name="view_id" ref="base.res_partner_kanban_view"/>
+    <field name="view_mode">kanban</field>
+  </record>
+  <record id="contacts.action_contacts_view_tree" model="ir.actions.act_window.view" context="{'studio': True}">
+    <field name="act_window_id" ref="contacts.action_contacts"/>
+    <field name="multi" eval="False"/>
+    <field name="sequence" eval="False"/>
+    <field name="view_id" ref="base.view_partner_tree"/>
+    <field name="view_mode">tree</field>
+  </record>
+  <record id="contacts_enterprise.res_partner_action_contacts_view_map" model="ir.actions.act_window.view" context="{'studio': True}">
+    <field name="act_window_id" ref="contacts.action_contacts"/>
+    <field name="multi" eval="False"/>
+    <field name="sequence">3</field>
+    <field name="view_id" ref="contacts_enterprise.res_partner_view_map"/>
+    <field name="view_mode">map</field>
+  </record>
+  <record id="studio_customization.false_96bd1cb1-7d78-45e0-97bb-dc411dcd34f1" model="ir.actions.act_window.view" context="{'studio': True}">
+    <field name="act_window_id" ref="contacts.action_contacts"/>
+    <field name="multi" eval="False"/>
+    <field name="sequence">4</field>
+    <field name="view_id" eval="False"/>
+    <field name="view_mode">activity</field>
+  </record>
+</odoo>
