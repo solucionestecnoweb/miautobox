@@ -17,8 +17,9 @@
 
     # always loaded
     'data': [
-        'formatos/factura_libre.xml',
-        'formatos/nota_entrega.xml',
+        # 'formatos/factura_libre.xml',
+        # 'formatos/fac_libre.xml',
+        # 'formatos/nota_entrega.xml',
         'formatos/account_move_view.xml',
     	#'security/ir.model.access.csv',
         #'resumen_iva/reporte_view.xml',

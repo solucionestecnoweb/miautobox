@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <report id="action_fac_libre" model="account.move" string="Factura Libre" name="format_tama.fac_libre" file="format_tama.fac_libre" report_type="qweb-pdf"/>
+
+        <template id="fac_libre">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="text-center">
+                        
+                    </div>
+                    <br/>
+                    <br/>
+                    <div id="informations" class="row mt8 mb8">
+                        <div class="col-6">
+                            <strong>Cliente: <t t-esc="docs.partner_id.name"/></strong>
+                            <br />
+
+                            <strong>R.I.F: <t t-esc="docs.partner_id.vat"/></strong>
+                            <br />
+
+                            <strong>Direccion: <t t-esc="docs.partner_id.state_id.name"/>, <t t-esc="docs.partner_id.city_id.name"/>, 
+                                <br />
+                                <t t-esc="docs.partner_id.street"/>
+                            </strong>
+                            <br />
+                            <t t-if="docs.partner_id.mobile and docs.partner_id.phone">
+                                <strong>Telefonos: <t t-esc="docs.partner_id.mobile"/>, <t t-esc="docs.partner_id.phone"/></strong>
+                                <br />
+                            </t>
+                            <t t-else="">
+                                <strong>Telefono: <t t-esc="docs.partner_id.mobile"/></strong>
+                                <br />
+                            </t>
+                        </div>
+                        <div class="col-6">
+                            <strong>Factura N°: <t t-esc="docs.invoice_number_cli"/></strong>
+                            <br />
+
+                            <strong>Condiciones de pago:  <t t-esc="docs.invoice_payment_term_id.name"/></strong>
+                            <br />
+
+                            <strong>Emision: <t t-esc="docs.invoice_date"/></strong>
+                            <br />
+
+                            <strong>Vencimiento: <t t-esc="docs.invoice_date_due"/></strong>
+                            <br />
+
+                            <strong>O. de compra/Pedido: <t t-esc="docs.invoice_origin"/></strong>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+
+                    <!-- <hr style="width:auto; background-color:black; border-top-width: 1px; border-top-style: solid;"/>
+                   
+                    <hr style="width:auto; background-color:black; border-top-width: 1px; border-top-style: solid;"/> -->
+                    
+                    <div id="page">
+                        <table class="table table-borderless m-0">
+                            <t t-set="discount" t-value="0"/>
+                            <thead  style="table-layout: fixed; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; border-top-width: 1px;">
+                                <tr>
+                                    <th class="text-center" style="font-size: 13px;">Cod.</th>
+                                    <th class="text-center" style="font-size: 13px;">Cantidad</th>
+                                    <th class="text-center" style="font-size: 13px;">Descripcion:</th>
+                                    <th class="text-center" style="font-size: 13px;">I.V.A %</th>
+                                    <th class="text-center" style="font-size: 13px;">Precio Neto</th>
+                                    <th class="text-center" style="font-size: 13px;">Desc. %</th>
+                                    <th class="text-center" style="font-size: 13px;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
+                                <t t-set="lines" t-value="docs.invoice_line_ids"/>
+                                <t t-foreach="lines" t-as="line">
+
+                                    <tr >
+                                        <td class="text-center">
+                                            <span t-field="line.product_id.default_code"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="line.quantity"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="line.tax_ids.name"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="line.price_unit_ref"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-if="line.discount">
+                                                <span t-field="line.discount"/>
+                                            </t>
+                                            <t t-else="">
+                                                <span>---</span>
+                                            </t>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="line.price_subtotal_ref"/>
+                                        </td>
+                                        <t t-set="discount" t-value="discount + (line.quantity * line.price_unit_ref * line.discount) / 100" t-options='{"widget": "float", "precision": 2}'/>
+
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <br />
+                        <table class="table table-borderless m-0">
+                            <tbody>
+                                <tr >
+                                    <td class="text-center">Subtotal Exento: </td>
+                                    <td class="text-center"><span t-field="docs.amount_exento"/></td>
+                                    <td class="text-center">Descuento: </td>
+                                    <td class="text-center"><span><t t-esc="discount"/></span></td>
+                                    <td class="text-center">Subtotal:</td>
+                                    <td class="text-center"><span t-field="docs.amount_total"/></td>
+                                </tr>
+                                <tr >
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center">Base Imponible: </td>
+                                    <td class="text-center"><span t-field="docs.amount_untaxed_signed_bs"/></td>
+                                </tr>
+                                <tr >
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center">Impuesto IVA 16%:</td>
+                                    <td class="text-center"><span t-field="docs.amount_tax_bs"/></td>
+                                </tr>
+                                <tr >
+                                    <td class="text-center">Nota:</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center">Total Factura:</td>
+                                    <td class="text-center"><span t-field="docs.amount_ref"/></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>          
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
