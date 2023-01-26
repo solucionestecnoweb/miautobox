@@ -1,8 +1,0 @@
-The following relational data haven't been exported because they either refer
-to a model that Studio doesn't export, or have no XML id:
-
-Record: studio_customization.identificar_whatsapp_647db760-f4a7-43f8-b551-f8a16686a5cc
-Model: ir.actions.server
-Field: fields_lines
-Type: one2many
-Value: ir.server.object.lines(511, 512, 514) ('ir.server.object.lines,511', 'ir.server.object.lines,512', 'ir.server.object.lines,514')
