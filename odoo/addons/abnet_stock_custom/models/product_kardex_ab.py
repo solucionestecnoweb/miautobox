@@ -4,6 +4,12 @@
 from odoo import fields, models, tools
 
 
+class ProductTemplateXcod(models.Model):
+    _inherit = "product.template"
+    x_CodGP = fields.Char('Código GP')
+    x_CodICG = fields.Char('Código ICG')
+    
+    
 class ProductKardex(models.Model):
     _name = "product.kardex"
     _description = "Kardex de Producto"
