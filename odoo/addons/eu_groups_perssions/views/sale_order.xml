@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+
+    <record id="view_sale_order_form_group_inherit_perxtra" model="ir.ui.view">
+        <field name="name">sale.order.groups.permissions.extra</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//button[@name='284'][1]" position="attributes">
+                <attribute name="groups">eu_groups_perssions.factura_payments_eu</attribute>
+            </xpath>
+            <xpath expr="//button[@name='284'][2]" position="attributes">
+                <attribute name="groups">eu_groups_perssions.factura_payments_eu</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_draft']" position="attributes">
+                <attribute name="groups">eu_groups_perssions.group_turn_presupuesto</attribute>
+            </xpath>
+            <!-- <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
+                <attribute name="groups">eu_groups_perssions.group_confirm_pp_eu</attribute>
+                <attribute name="confirm">¿Está seguro que desea confirmar? ¿Revisó los datos y realizó el intercambio de divisas?</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                <attribute name="groups">eu_groups_perssions.group_confirm_pp_eu</attribute>
+                <attribute name="confirm">¿Está seguro que desea confirmar? ¿Revisó los datos y realizó el intercambio de divisas?</attribute>
+            </xpath> -->
+<!-- si le pongo un usuario que vea todo pierde la capacidad de eliminar -->
+        </field>
+    </record>
+
+    <record id="view_sale_order_form_group_inherit_perxtra2" model="ir.ui.view">
+        <field name="name">sale.order.groups.permissions.extra2</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_auto_done_setting"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//button[@name='action_done']" position="attributes">
+                <attribute name="groups">eu_groups_perssions.bloquear_pedido_eu</attribute>
+            </xpath>
+            
+<!-- si le pongo un usuario que vea todo pierde la capacidad de eliminar -->
+        </field>
+    </record>
+    
+
+    <menuitem id="sale.menu_sale_invoicing"
+            parent="sale.sale_menu_root"
+            sequence="3" groups="eu_groups_perssions.Facturar_ventas_eu"/>
+    
+    <menuitem id="sale.menu_sale_order_invoice"
+            action="sale.action_orders_to_invoice"
+            parent="sale.menu_sale_invoicing" groups="eu_groups_perssions.Facturar_ventas_eu"
+            sequence="2" />
+    <menuitem action="sale.action_orders_upselling" groups="eu_groups_perssions.Facturar_ventas_eu"
+            id="sale.menu_sale_order_upselling" parent="sale.menu_sale_invoicing"
+            sequence="5" />
+    
+</odoo>

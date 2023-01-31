@@ -1,0 +1,537 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id='cauchos_view_tree' model='ir.ui.view'>
+            <field name="name">cauchos.tree</field>
+            <field name="model">subcategory_service</field>
+            <field name="arch" type="xml">
+                <tree string="Model Make">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id='cauchos_view_tree' model='ir.ui.view'>
+            <field name="name">cauchos.tree</field>
+            <field name="model">marca_cauchos</field>
+            <field name="arch" type="xml">
+                <tree string="Model Make">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id='subcategory_view_tree' model='ir.ui.view'>
+            <field name="name">subcategory.tree</field>
+            <field name="model">subcategory_service</field>
+            <field name="arch" type="xml">
+                <tree string="Model Make">
+                    <field name="name" />
+<!--                    <field name="brand_id_category"/>-->
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="cauchos_form" model="ir.ui.view">
+            <field name="name">cauchos.form</field>
+            <field name="model">marca_cauchos</field>
+            <field name="arch" type="xml">
+                <form string="Model Make">
+                    <sheet>
+                         <group>
+                            <div>
+                                <field name="image_128" widget="image" class="oe_avatar"/>
+                                <label for="name" class="oe_edit_only"/>
+                                <h1>
+                                    <field name="name" />
+                                </h1>
+                            </div>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id='cauchos_view_kanban' model='ir.ui.view'>
+            <field name="name">cauchos.kanban</field>
+            <field name="model">marca_cauchos</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="name" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_vignette oe_semantic_html_override oe_kanban_global_click">
+                                <a type="open" href="#" class="o_kanban_image oe_kanban_action">
+                                    <img alt="Open" t-att-src="kanban_image('marca_cauchos', 'image_128', record.id.raw_value)" class="img-fluid" style="width:100px;"/>
+                                </a>
+                                <div class="oe_kanban_details">
+                                    <h4 class="oe_partner_heading">
+                                        <a type="open" class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div class="o_kanban_button">
+                                    <a type="object" name="action_brand_model" class="oe_kanban_action oe_kanban_action_a">
+                                        <field name="model_count"/>
+                                        MODELS
+                                    </a>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+
+        <record id='model_view_form' model='ir.ui.view'>
+        <field name="name">model.form</field>
+        <field name="model">fleet.vehicle.model.tire</field>
+        <field name="arch" type="xml">
+            <form string="Model">
+                <sheet>
+                    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="image_128" widget='image' class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="AT51 AT61"/>
+                        </h1>
+                        <label for="brand_id" class="oe_edit_only"/>
+                        <h2>
+                            <field name="brand_id" placeholder="Kumho, Pirelli"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1"/>
+                            <field name="vehicle_type"/>
+
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <record id='model_view_tree' model='ir.ui.view'>
+            <field name="name">model.tree</field>
+            <field name="model">fleet.vehicle.model.tire</field>
+            <field name="arch" type="xml">
+                <tree string="Models">
+                    <field name="brand_id" />
+                    <field name="name" />
+                    <field name="vehicle_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='model_view_kanban' model='ir.ui.view'>
+            <field name="name">model.kanban</field>
+            <field name="model">fleet.vehicle.model.tire</field>
+            <field name="arch" type="xml">
+                <kanban string="Models">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_details">
+                                <div><strong><field name="name"/></strong></div>
+                                <div><field name="brand_id"/></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <record id='model_view_search' model='ir.ui.view'>
+            <field name="name">model.search</field>
+            <field name="model">fleet.vehicle.model.tire</field>
+            <field name="arch" type="xml"><search string="Vehicles costs" >
+                <field name="brand_id" />
+                <group expand="1" string="Group By">
+                    <filter name="groupby_brand" context="{'group_by' : 'brand_id'}" string="Marca"/>
+                </group>
+            </search>
+            </field>
+        </record>
+
+
+        <record id='measure_view_tree' model='ir.ui.view'>
+            <field name="name">measure.tree</field>
+            <field name="model">measure_tire</field>
+            <field name="arch" type="xml">
+                <tree string="Model Make">
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="measure_form" model="ir.ui.view">
+            <field name="name">measure.form</field>
+            <field name="model">measure_tire</field>
+            <field name="arch" type="xml">
+                <form string="Model Make">
+                    <sheet>
+                        <group>
+                            <group>
+
+                            </group>
+                            <group>
+                                <field name="profile" />
+                                <field name="diameter" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id='cauchos_action' model='ir.actions.act_window'>
+            <field name="name">Marca de Cauchos</field>
+            <field name="res_model">marca_cauchos</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+
+                <p class="o_view_nocontent_smiling_face">
+                    Ready to manage your fleet more efficiently ?
+                </p>
+                <p>
+                    Let's create your first vehicle.
+                </p>
+            </field>
+        </record>
+
+
+        <record id='model_action' model='ir.actions.act_window'>
+            <field name="name">Modelos de Marcas de Caucho</field>
+            <field name="res_model">fleet.vehicle.model.tire</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_groupby_brand" : True,}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear nuevos modelos de cauchos
+                </p><p>
+                tu puedes registrar nuevos modelos como  (Scorpions, P500, P700) for each make (Pirelli).
+            </p>
+            </field>
+        </record>
+
+        <record id='subcategory_action' model='ir.actions.act_window'>
+            <field name="name">Subcategoria de Servicios</field>
+            <field name="res_model">subcategory_service</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="context">{"search_default_groupby_brand" : True,}</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear nuevas subcategorias
+                </p><p>
+                tu puedes registrar nuevas subcategorias
+            </p>
+            </field>
+        </record>
+
+        <record id="subcategory_form" model="ir.ui.view">
+            <field name="name">subcategory.form</field>
+            <field name="model">subcategory_service</field>
+            <field name="arch" type="xml">
+                <form string="Model Make">
+                    <sheet>
+                        <group>
+                            <group>
+
+<!--                                <field name="brand_id_category" widget="many2one_tags"/>-->
+
+                            </group>
+                            <group>
+                                <field name="name" />
+
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+<!--        <record id='measure_action' model='ir.actions.act_window'>-->
+<!--            <field name="name">Tipos de servicios</field>-->
+<!--            <field name="res_model">fleet.vehicle.model.tire</field>-->
+<!--            <field name="view_mode">kanban,tree,form</field>-->
+<!--            <field name="help" type="html">-->
+
+<!--                <p class="o_view_nocontent_smiling_face">-->
+<!--                    ¿Listo para gestionar tu flota de manera más eficiente?-->
+<!--                </p>-->
+<!--                <p>-->
+<!--                   Vamos a crear su primer Medida.-->
+<!--                </p>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+        <menuitem id="menu_brand1"
+                  name="Registro de Cauchos"
+                  parent="fleet.menu_root"/>
+
+
+
+        <menuitem id="menu_brand2"
+                  name="Marca de cauchos"
+                  parent="peliculas.menu_brand1"
+                  sequence="2"
+                  action="cauchos_action"/>
+
+<!--fleet.fleet_configuration  peliculas.menu_brand1-->
+        <menuitem id="menu_brand3"
+                  name="Modelo de cauchos"
+                  parent="peliculas.menu_brand1"
+                  sequence="2"
+                  action="model_action"/>
+
+        <menuitem id="menu_brand4"
+                  name="Subcategoria de servicios"
+                  parent="fleet.fleet_configuration"
+                  sequence="2"
+                  action="subcategory_action"/>
+
+<!--        <menuitem id="menu_brand4"-->
+<!--                  name="Medidas de cauchos"-->
+<!--                  parent="peliculas.menu_brand1"-->
+<!--                  sequence="2"-->
+<!--                  action="measure_action"/>-->
+
+<!--        <menuitem id="menu_brand5"-->
+<!--                  name="tipo de servicio"-->
+<!--                  parent="peliculas.menu_brand1"-->
+<!--                  sequence="3"-->
+<!--                  action="measure_action"/>-->
+
+
+<!--        <record id="view_marca_servicio" model="ir.ui.view">-->
+<!--            <field name="name">view.marca.servicio</field>-->
+<!--            <field name="model">fleet.vehicle.log.services</field>-->
+<!--            <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='purchaser_id']" position="after">-->
+
+<!--                    <center>-->
+<!--                        <h1>-->
+<!--                            Cauchos Izquierdo-->
+<!--                        </h1>-->
+<!--                        <p>CAUCHO #1</p>-->
+<!--                    </center>-->
+
+<!--                    <field name="marca_id" string="Elegir Marca"  widget="many2many_tags"/>-->
+<!--                    <field name="modelo_id" string="Elegir Modelo"  widget="many2many_tags"/>-->
+<!--                    <field name="profundidad" string="Profundidad del neumatico"/>-->
+<!--                    <field name="width" string="Ancho" default_focus="1"/>-->
+<!--                    <field name="profile" string="Perfil"-->
+<!--                           default_focus="1"/>-->
+<!--                    <field name="diameter" string="Diametro"/>-->
+
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+
+<!--        <record id="view_marca_services" model="ir.ui.view">-->
+<!--            <field name="name">view.marca.services</field>-->
+<!--            <field name="model">fleet.vehicle.log.services</field>-->
+<!--            <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='oil_leaks']" position="after">-->
+<!--                    <center><p>CAUCHO #2</p></center>-->
+<!--                    <field name="marca_id2" string="Elegir Marca"   widget='many2many_tags'/>-->
+<!--                    <field name="modelo_id2" string="Elegir Modelo"  widget="many2many_tags"/>-->
+<!--                    <field name="profundidad2" string="Profundidad del neumatico"/>-->
+<!--                    <field name="width2" string="Ancho" default_focus="1"/>-->
+<!--                    <field name="profile2" string="Perfil"-->
+<!--                           default_focus="1"/>-->
+<!--                    <field name="diameter2" string="Diametro"/>-->
+
+
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+<!--        <record id="caucho3" model="ir.ui.view">-->
+<!--            <field name="name">caucho3</field>-->
+<!--            <field name="model">fleet.vehicle.log.services</field>-->
+<!--            <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='purchaser_id']" position="after">-->
+<!--                    <center>-->
+<!--                        <h1>-->
+<!--                            Cauchos Derecho-->
+<!--                        </h1>-->
+<!--                        <p>CAUCHO #3</p>-->
+<!--                    </center>-->
+<!--                    <field name="marca_id3" string="Elegir Marca"   widget='many2many_tags'/>-->
+<!--                    <field name="modelo_id3" string="Elegir Modelo"  widget="many2many_tags"/>-->
+<!--                    <field name="profundidad3" string="Profundidad del neumatico"/>-->
+<!--                    <field name="width3" string="Ancho" default_focus="1"/>-->
+<!--                    <field name="profile3" string="Perfil"/>-->
+<!--                    <field name="diameter3" string="Diametro"/>-->
+
+
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+<!--        <record id="caucho4" model="ir.ui.view">-->
+<!--            <field name="name">caucho4</field>-->
+<!--            <field name="model">fleet.vehicle.log.services</field>-->
+<!--            <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='diameter3']" position="after">-->
+
+<!--                        <center>-->
+<!--                            <p>CAUCHO #4</p>-->
+<!--                        </center>-->
+<!--                        <field name="marca_id4" string="Elegir Marca"   widget='many2many_tags'/>-->
+<!--                        <field name="modelo_id4" string="Elegir Modelo"  widget="many2many_tags"/>-->
+<!--                        <field name="profundidad4" string="Profundidad del neumatico"/>-->
+<!--                        <field name="width4" string="Ancho" default_focus="1"/>-->
+<!--                        <field name="profile4" string="Perfil"/>-->
+<!--                        <field name="diameter4" string="Diametro"/>-->
+
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+
+<!--&lt;!&ndash;        VIEWS PARA MODULO DE FLOTA PARA AGREGAR LO QUE HACE FALTA&ndash;&gt;-->
+<!--&lt;!&ndash;        PARA AGREGAR TIPO DE VEHICULO&ndash;&gt;-->
+        <record id="additional_services" model="ir.ui.view">
+            <field name="name">additional.services</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='doors']" position="after">
+
+                    <field name="type_vehicle" required="1" />
+
+                </xpath>
+            </field>
+        </record>
+
+
+<!--        PARA VER LOS TIPOS DE SERVICIOS COMO MANY 2 MANY-->
+        <record id="view_marca_servicio" model="ir.ui.view">
+            <field name="name">view.marca.servicio</field>
+            <field name="model">fleet.vehicle.log.services</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vendor_id']" position="after">
+<!--                     <field name="service_basic_bool" invisible="1"/> -->
+<!--                     <field name="service_types" invisible="1" widget="many2many_tags"/> -->
+<!--                    attrs="{'invisible': [('service_basic_bool', '!=', True)]}"
+<field name="service_lightf_bool" string="Revisión de luces" widget="boolean_toggle"/>-->
+<!--&lt;!&ndash;                    <field name="service_lightb_bool" string="Luces traseras" widget="boolean_toggle"/>&ndash;&gt;-->
+<!--                    <field name="fail_light" attrs="{'invisible': [('service_lightf_bool', '!=', True)]}" domain="[('id', '=', [9,10,11,12] ) ]"  widget="many2many_tags" />-->
+
+<!--                    <center>-->
+<!--                        <p>-->
+<!--                            Revision bateria-->
+<!--                        </p>-->
+<!--                    </center>-->
+<!--                    <field name="battery_bool" string="Bateria" widget="boolean_toggle"/>-->
+                    <!--                    <field name="light_description" attrs="{'invisible': [('service_light_bool', '!=', True)]}"/>-->
+
+                    <!--                    domain for service_type_id domain="[('category', '=', 'servi_basic' )]" -->
+                    <!--domain="[('brand_id_category.service_type_id.category', '=', 'servi_basic' )]"-->
+                    <!--                    domain que usa service_type_id  domain="[('id', '=', [6,21,31,32] ) ]"-->
+                </xpath>
+            </field>
+        </record>
+
+
+
+        <!--        PARA VER LOS TIPOS DE SERVICIOS COMO MANY 2 MANY-->
+<!--         <record id="view_purchaser_id_servicio" model="ir.ui.view">
+            <field name="name">view.purchaser.servicio</field>
+            <field name="model">fleet.vehicle.log.services</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='service_types']" position="after"> -->
+
+<!--                    <separator string="Servicios"/>-->
+<!--                    <notebook>-->
+<!--                        <page string="Presupuesto">-->
+<!--                            <group>-->
+
+<!--                                <group>-->
+
+
+<!--                                </group>-->
+<!--                                <group>-->
+
+<!--                                </group>-->
+<!--                            </group>-->
+
+
+<!--                            <tree editable="bottom">-->
+<!--                                <control>-->
+<!--                                    <create name="add_product_control" string="agregar recurso cinematografico"/>-->
+<!--                                </control>-->
+
+<!--                                <field name="cantidad"/>-->
+<!--                                <field name="service_types" widget="many2many_tags"/>-->
+<!--                            </tree>-->
+
+
+<!--                            <group col="6" class="mt-2 mt-md-0">-->
+<!--                                <group colspan="4">-->
+
+
+<!--                                </group>-->
+<!--                                <group class="oe_subtotal_footer oe_right" colspan="2">-->
+
+<!--                                    <div class="oe_subtotal_footer_separator oe_line o_td_label">-->
+
+<!--                                    </div>-->
+
+<!--                                </group>-->
+<!--                                <div class="oe_clear"/>-->
+<!--                            </group>-->
+
+<!--                        </page>-->
+<!--                        <page string="Otra informacion">-->
+<!--                            <group>-->
+
+<!--                            </group>-->
+
+<!--                        </page>-->
+<!--                    </notebook>-->
+
+
+
+
+                    <!--                    <field name="service_oil_bool" string="Revisión de fugas de Aceite" widget="boolean_toggle"/>-->
+                    <!--&lt;!&ndash;                    <field name="oil_description" attrs="{'invisible': [('service_oil_bool', '!=', True)]}"/>&ndash;&gt;-->
+                    <!--                    <field name="oil_leaks" domain="[('id', '=', [3,4,5,6,7] ) ]" attrs="{'invisible': [('service_oil_bool', '!=', True)]}"  widget="many2many_tags" />-->
+
+<!--                 </xpath>
+            </field>
+        </record>
+ -->
+
+
+
+ 
+    </data>
+</odoo>
+
