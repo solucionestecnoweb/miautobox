@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <record id="view_partner_form_btts_venta_inherit_partner" model="ir.ui.view">
+<!--     <record id="view_partner_form_btts_venta_inherit_partner" model="ir.ui.view">
         <field name="name">res.partner.form.superbutton</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="sale.res_partner_view_buttons"/>
@@ -14,7 +14,7 @@
         </field>
     </record>
     
-   
+    -->
     
     <!-- <record id="view_partner_form_account_partner_view_buttons" model="ir.ui.view">
         <field name="name">res.partner.form.exequiales</field>
