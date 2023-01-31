@@ -12,7 +12,7 @@ class ProductKardex(models.Model):
 
     id = fields.Integer(string='ID Kardex', readonly=True)
     product_id = fields.Many2one('product.template', string='ID de Producto', readonly=True)
-    x_CodGP = fields.Char('Código GP', related='product_id.x_CodGP')
+#     x_CodGP = fields.Char('Código GP', related='product_id.x_CodGP')
     x_CodICG = fields.Char('Código ICG', related='product_id.x_CodICG')
     default_code = fields.Char('Código Magento', related='product_id.default_code')
     company_id = fields.Many2one('res.company',
