@@ -9,8 +9,8 @@
                        groups="base.group_multi_company"
                 />
                 <field name="product_name" />
-<!--                 <field name="x_CodGP" optional="hide"/> -->
-<!--                 <field name="x_CodICG" optional="hide"/> -->
+                <field name="x_CodGP" optional="hide"/>
+                <field name="x_CodICG" optional="hide"/>
                 <field name="default_code" optional="hide"/>
                 <field name="move_date" />
                 <field name="wh_from"/>
