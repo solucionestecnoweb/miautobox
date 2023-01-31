@@ -16,7 +16,7 @@
     
    
     
-    <record id="view_partner_form_account_partner_view_buttons" model="ir.ui.view">
+<!--     <record id="view_partner_form_account_partner_view_buttons" model="ir.ui.view">
         <field name="name">res.partner.form.exequiales</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="account.partner_view_buttons"/>
@@ -34,5 +34,5 @@
             </xpath>
             
         </field>
-    </record>
+    </record> -->
 </odoo>
