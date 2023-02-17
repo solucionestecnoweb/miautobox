@@ -71,4 +71,9 @@ class ResPartner(models.Model):
                         pass
                         #msg = partner._construct_constraint_msg(country_code.lower())
                         #raise ValidationError(msg)
+
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    vat_check_vies = fields.Boolean(string='Verify VAT Numbers')
     
