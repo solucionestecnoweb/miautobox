@@ -46,6 +46,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     simple_vat_check = fields.Boolean()
+    vies_vat_check = fields.Boolean()
 
 
     @api.constrains('vat', 'country_id')
