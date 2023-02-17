@@ -45,6 +45,8 @@ class AccountMoveLine(models.Model):
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    simple_vat_check = fields.Boolean()
+
 
     @api.constrains('vat', 'country_id')
     def check_vat(self):
