@@ -46,7 +46,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
 
-    #@api.constrains('vat', 'country_id')
+    @api.constrains('vat', 'country_id')
     def check_vat(self):
         if self.env.context.get('company_id'):
             company = self.env['res.company'].browse(self.env.context['company_id'])
