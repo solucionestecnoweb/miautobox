@@ -45,10 +45,6 @@ class AccountMoveLine(models.Model):
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    simple_vat_check = fields.Boolean()
-    #vies_vat_check = fields.Boolean()
-
-
     @api.constrains('vat', 'country_id')
     def check_vat(self):
         if self.env.context.get('company_id'):
@@ -74,9 +70,4 @@ class ResPartner(models.Model):
                         pass
                         #msg = partner._construct_constraint_msg(country_code.lower())
                         #raise ValidationError(msg)
-
-class ResCompany(models.Model):
-    _inherit = 'res.company'
-
-    vat_check_vies = fields.Boolean(string='Verify VAT Numbers')
     

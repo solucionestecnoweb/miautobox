@@ -17,7 +17,7 @@
     'libro_ventas',
     'libro_compras',
     'libro_resumen_alicuota',
-    'l10n_ve_fiscal_requirements_inm',
+    'l10n_ve_fiscal_requirements',
     ],
 
     # always loaded

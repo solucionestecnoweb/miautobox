@@ -10,7 +10,7 @@
         'account',
         'account_accountant',
         'base',
-        #'base_vat',
+        'base_vat',
     ],
     'data': [
         'security/ir.model.access.csv',

@@ -18,7 +18,7 @@
     <record id="account_inherit_view_form2" model="ir.ui.view">
         <field name="name">account.inherit.view.form2</field>
         <field name="model">account.move</field>
-        <field name="inherit_id" ref="l10n_ve_fiscal_requirements_inm.account_inherit_view_form"/>
+        <field name="inherit_id" ref="l10n_ve_fiscal_requirements.account_inherit_view_form"/>
         <field name="arch" type="xml">
             
             <!-- **************** Campos factura proveedor**************    -->

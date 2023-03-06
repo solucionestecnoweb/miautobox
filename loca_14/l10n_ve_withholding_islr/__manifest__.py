@@ -13,7 +13,7 @@
         #'account_accountant',
         #'base',
         'vat_retention',
-        'l10n_ve_fiscal_requirements_inm',
+        'l10n_ve_fiscal_requirements',
         ],
     'data': [
         'data/islr_concept_data.xml',

@@ -137,19 +137,3 @@ class account_payment(models.Model):
             })
             name = IrSequence.next_by_code(SEQUENCE_CODE)
         return name
-
-    def action_draft(self):
-        id_pago=self.id
-        move_itf_idd=self.move_itf_id.id
-        if move_itf_idd:
-            mov_igtf=self.env['account.move'].search([('id','=',move_itf_idd)])
-            mov_igtf.filtered(lambda move: move.state == 'posted').button_draft()
-            mov_igtf.with_context(force_delete=True).unlink()
-
-        # CODIGO ORIGINAL DEL SISTEMA NO TOCAR
-        self.move_id.button_draft()
-        ##moves = self.mapped('move_line_ids.move_id')
-        ##moves.filtered(lambda move: move.state == 'posted').button_draft()
-        ##moves.with_context(force_delete=True).unlink()
-        ##self.write({'state': 'draft'})
-        # FIN CODIGO ORIGINAL

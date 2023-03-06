@@ -101,7 +101,7 @@
     <!-- Menu for all supplier retention -->
     <menuitem 
         id="menu_municipality_tax_suppliers"
-        name="Retención de Impuesto Municipal a Proveedores"
+        name="Withholding Municipal Tax for Suppliers"
         action="action_municipality_tax_suppliers"
         parent="account.menu_finance_payables"
     />
@@ -109,7 +109,7 @@
     <!-- Menu for all customer retention -->
     <menuitem 
         id="menu_municipality_tax_customers"
-        name="Retención de Impuesto Municipal a Clientes"
+        name="Withholding Municipal Tax for Customers"
         action="action_municipality_tax_customer"
         parent="account.menu_finance_receivables"
     />

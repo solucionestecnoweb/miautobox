@@ -142,7 +142,7 @@
     <!-- switch the Tax Unit menu -->
     <menuitem
         id="menu_tax_unit"
-        action="l10n_ve_fiscal_requirements_inm.action_tax_unit"
+        action="l10n_ve_fiscal_requirements.action_tax_unit"
         name="Tax Unit"
         parent="menu_islr"
     />

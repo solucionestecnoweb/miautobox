@@ -17,7 +17,7 @@
             'vat_retention',
             'municipality_tax',
             'isrl_retention',
-            'l10n_ve_fiscal_requirements_inm',
+            'l10n_ve_fiscal_requirements',
             ],
         'data': [
             ],
