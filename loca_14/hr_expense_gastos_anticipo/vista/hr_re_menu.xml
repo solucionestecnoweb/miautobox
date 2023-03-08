@@ -22,7 +22,7 @@
             action="hr_expense_gastos_anticipo.caja_pago_employee"
            />
 
-    	<!--menuitem
+    	<menuitem
         id="menu_gastos_v2"
         name="Gastos del Empleado" 
         parent="hr_expense_gastos_anticipo.menu_viatico"
@@ -41,7 +41,7 @@
         name="Registro de Anticipos" 
         parent="hr_expense_gastos_anticipo.menu_viatico"
         action="hr_solicitud_anticipo_menu"
-        sequence="1"/-->
+        sequence="1"/>
 
         <menuitem
         	id="menu_viatico"
