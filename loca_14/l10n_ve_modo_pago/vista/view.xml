@@ -43,7 +43,7 @@
     <menuitem
         id="menu_modo_pago"
         parent="account.menu_finance_configuration"
-        name="Modos de Pago"
+        name="Modos de Pago INM"
         action="modo_pagos_action"
         sequence="-1"
         />
