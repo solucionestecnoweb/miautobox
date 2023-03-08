@@ -13,7 +13,7 @@
     'category': 'Traer forma automatica cuentas contables para proveedores y clientes',
 
     # any module necessary for this one to work correctly
-    'depends': ['product','base', 'account','sale','purchase','l10n_ve_igtf_formato_libre','module_camp_prop_vat_minuci_islr','l10n_ve_fiscal_requirements'],
+    'depends': ['product','base', 'account','sale','purchase','l10n_ve_igtf','module_camp_prop_vat_minuci_islr','l10n_ve_fiscal_requirements_inm'],
 
     # always loaded
     'data': [

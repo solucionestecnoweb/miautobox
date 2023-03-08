@@ -5,7 +5,14 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
-
+            <xpath expr="//field[@name='payment_reference']" position="after">
+                <field name="sub_total_pagado" invisible="0"/>
+            </xpath>
+            <xpath expr="//button[@id='account_invoice_payment_btn']" position="after">
+                         <button name="pago_igtf" string="Pagar Igtf" type="object" class="oe_highlight" attrs="{'invisible': ['|',('impuesto_igtf', '=',0),('amount_residual','=',0)]}" />
+                         <!--button name="button_draft" string="borrador 2" type="object" /-->
+            </xpath>
+            
         	<xpath expr="//page[@name='other_info']" position="before">
               <page string="Apuntes IGTF" attrs="{'invisible': [('move_type', '=','entry')]}">
                 <group string="Pagos IGTF">

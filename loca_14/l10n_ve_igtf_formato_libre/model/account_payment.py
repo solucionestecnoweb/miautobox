@@ -83,7 +83,7 @@ class account_payment(models.Model):
                         idv_move=id_move.id
                         valor=self.registro_movimiento_linea_igtf(idv_move,retencion,cuenta_igtf,cuenta_otra)
                         moves= self.env['account.move'].search([('id','=',idv_move)])
-                        moves.action_post()
+                        #moves.action_post() # AQUI PUBLICO DE UNA VEZ
                         self.asiento_cobro_igtf=id_move
                         #raise UserError(_('ceunta_otra=%s')%factura_id)
                         

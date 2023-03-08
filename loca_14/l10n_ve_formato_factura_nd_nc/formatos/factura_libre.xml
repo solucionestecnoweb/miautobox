@@ -78,16 +78,7 @@
                       <td><t t-esc="o.product_id.name"/></td>
                       <td><div align="center"><t t-esc="o.quantity"/></div></td>
                       <td><div align="right"><t t-esc="o.float_format(o.fact_div_line(o.price_unit))"/></div></td>
-                      <td>
-                        <div align="center">
-                            <t t-if="o.tax_ids.aliquot!='exempt' ">
-                                <t t-esc="o.tax_ids.amount"/>%
-                            </t>
-                            <t t-else="">
-                                Exento
-                            </t>
-                        </div>
-                        </td>
+                      <td><div align="center"><t t-esc="o.tax_ids.amount"/>%</div></td>
                       <td><div align="right"><t t-esc="o.float_format(o.fact_div_line(o.price_subtotal))"/>
 
                           <t t-set="acum_subtotal" t-value="acum_subtotal+o.price_subtotal"/></div></td>
@@ -107,7 +98,7 @@
                     <tr style="font-size:12px;">
                       <td colspan="5"><div align="right">SUBTOTAL:</div></td>
                       <td colspan="1"><div align="right"><t t-esc="docs.float_format(docs.fact_div(acum_subtotal))"/>
-                        <t t-esc="docs.doc_currency_id.symbol"/></div></td>
+                  		<t t-esc="docs.doc_currency_id.symbol"/></div></td>
                       <t t-set="total_factura" t-value="total_factura+acum_subtotal"/>
                     </tr>
 
@@ -115,7 +106,7 @@
                     <tr style="font-size:12px;">
                       <td colspan="5"><div align="right">I.V.A(16%):</div></td>
                       <td><div align="right"><t t-esc="docs.float_format(docs.fact_div(acum_alicuota_general))"/><t t-esc="docs.doc_currency_id.symbol"/></div>
-                      </td>
+                  	  </td>
                       <t t-set="total_factura" t-value="total_factura+acum_alicuota_general"/>
                     </tr>
                     </t>
@@ -124,7 +115,7 @@
                     <tr style="font-size:12px;">
                       <td colspan="5"><div align="right">I.V.A(8%):</div></td>
                       <td><div align="right"><t t-esc="docs.float_format(docs.fact_div(acum_alicuota_reducida))"/><t t-esc="docs.doc_currency_id.symbol"/></div>
-                      </td>
+                  	  </td>
                       <t t-set="total_factura" t-value="total_factura+acum_alicuota_reducida"/>
                     </tr>
                     </t>
@@ -133,49 +124,17 @@
                     <tr style="font-size:12px;">
                       <td colspan="5"><div align="right">I.V.A(31%):</div></td>
                       <td><div align="right"><t t-esc="docs.float_format(docs.fact_div(acum_alicuota_adicional))"/><t t-esc="docs.doc_currency_id.symbol"/></div>
-                      </td>
+                  	  </td>
                       <t t-set="total_factura" t-value="total_factura+acum_alicuota_adicional"/>
                     </tr>
                     </t>
-                    <tr style="font-size:12px;">
-                      <td colspan="5">
-                        <div align="right">IGTF (3%):</div>
-                      </td>
-                      <td align="right">
-                        <t t-esc="docs.float_format(docs.fact_div(docs.impuesto_igtf))" /><t t-esc="docs.doc_currency_id.symbol"/>
-                      </td>
-                      <t t-set="total_factura" t-value="total_factura+docs.impuesto_igtf"/>
-                    </tr>
+
                     <tr style="font-size:12px;">
                       <td colspan="5"><div align="right">TOTAL A PAGAR:</div></td>
                       <td><div align="right"><t t-esc="docs.float_format(docs.fact_div(total_factura))"/><t t-esc="docs.doc_currency_id.symbol"/></div>
                       </td>
                     </tr>
                   </table>
-                  
-                  <table width="100%" border="1">
-                      <tr>
-                        <td style="font-size:12px;"><strong>FORMA DE PAGO Y RECEPCION IGTF:</strong></td>
-                        <td rowspan="2">
-                            <t t-set="acum_ret_igtf" t-value="0"/>
-                                <div class="col-14 text-right">
-                                    <t t-foreach="docs.igtf_ids" t-as="igtf">
-                                        <div style="font-size:12px;">
-                                            <t t-esc="igtf.metodo_pago.name"/>:    
-                                            <t t-esc="igtf.monto_base" t-options='{"widget": "float", "precision": 2}'/>   |   
-                                                      IGTF 3%   |   
-                                            <t t-esc="igtf.monto_ret" t-options='{"widget": "float", "precision": 2}'/>
-                                            <t t-set="acum_ret_igtf" t-value="acum_ret_igtf+igtf.monto_ret"/>
-                                        </div>
-                                    </t>
-                                    <div style="font-size:12px;">Total Igtf: <t t-esc="acum_ret_igtf" t-options='{"widget": "float", "precision": 2}'/></div>
-                                </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="font-size:12px;"><strong>"Esta factura causará IGTF 3% en caso de ser pagada en divisas en efectivo</strong></td>
-                      </tr>
-                </table>
     
                 </div>
               </t>

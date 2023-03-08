@@ -14,13 +14,13 @@
                 </div>
             </xpath-->
 
-            <xpath expr="//field[@name='vat']" position="attributes">
+            <!--xpath expr="//field[@name='vat']" position="attributes">
                 <attribute name="string">RIF</attribute>
-            </xpath>
+            </xpath-->
 
-            <xpath expr="//notebook/page/group/group[2]/field[@name='vat']" position="after">
+            <!--xpath expr="//notebook/page/group/group[2]/field[@name='vat']" position="after">
                 <field name="type_taxpayer"/>
-            </xpath>
+            </xpath-->
 
             <xpath expr="//group[@name='social_media']" position="after">
                     <group string="Configuración para los comprobantes de retenciones a Proveedores" name="ret_provee" aling="center">

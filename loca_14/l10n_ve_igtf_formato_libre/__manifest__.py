@@ -21,6 +21,7 @@
     'vista/account_move_inherit.xml',
     'vista/account_payment_view.xml',
     'vista/account_journal_views.xml',
+    'vista/account_igtf_payment.xml',
     'wizard/wizard.xml',
     'report/reporte_view.xml',
     'report/reporte_2_view.xml',

@@ -5,7 +5,7 @@
     <!-- Menu for all vendor retention -->
     <menuitem 
         id="menu_vendor_vat_retention"
-        name="Vendors VAT retention"
+        name="Retencion Impuestos a Proveedores"
         parent="account.menu_finance_payables"
         action="action_vat_vendors_retention"
     />
@@ -13,7 +13,7 @@
     <!-- Menu for all customer retention -->
     <menuitem 
         id="menu_customer_vat_retention"
-        name="Customer VAT retention"
+        name="Retencion Impuesto Clientes"
         parent="account.menu_finance_receivables"
         action="action_vat_customers_retention"
     />

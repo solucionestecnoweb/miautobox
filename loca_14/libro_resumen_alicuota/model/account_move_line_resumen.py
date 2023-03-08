@@ -97,7 +97,6 @@ class AccountMove(models.Model):
                     raise UserError(_('Las Lineas de la Factura deben tener un tipo de alicuota o impuestos'))
             # ***** FIN VERIFICACION
             lista_impuesto = self.env['account.tax'].search([('type_tax_use','=',type_tax_use)])
-            #raise UserError(_('lista_impuesto= %s')%lista_impuesto)
             #('aliquot','not in',('general','exempt')
             #base=0
             #total=0
@@ -118,13 +117,13 @@ class AccountMove(models.Model):
                 base=0
                 total=0
                 total_impuesto=0
-                total_exento=0 #
-                alicuota_adicional=0  #
-                alicuota_reducida=0 #
-                alicuota_general=0 #
-                base_general=0 #
-                base_reducida=0 #
-                base_adicional=0 #
+                #total_exento=0
+                #alicuota_adicional=0
+                #alicuota_reducida=0
+                #alicuota_general=0
+                #base_general=0
+                #base_reducida=0
+                #base_adicional=0
                 retenido_general=0
                 retenido_reducida=0
                 retenido_adicional=0
@@ -146,7 +145,6 @@ class AccountMove(models.Model):
                             if tipo_alicuota=="general":
                                 if det_fac.tax_ids.aliquot=="general":
                                     alicuota_general=alicuota_general+(det_fac.price_total-det_fac.price_subtotal)
-                                    #raise UserError(_('alicuota_general: %s')%alicuota_general)
                                     base_general=base_general+det_fac.price_subtotal
                                     valor_iva=det_fac.tax_ids.amount
                             if tipo_alicuota=="exempt":
@@ -198,12 +196,12 @@ class AccountMove(models.Model):
             'total_exento':total_exento,#listo
             'alicuota_reducida':alicuota_reducida,#listo
             'alicuota_adicional':alicuota_adicional,#listo
-            'alicuota_general':alicuota_general,#listo ####
+            'alicuota_general':alicuota_general,#listo
             'fecha_fact':self.date,
             'fecha_comprobante':self.vat_ret_id.voucher_delivery_date,
             'base_adicional':base_adicional,#listo
             'base_reducida':base_reducida,#listo
-            'base_general':base_general,#listo  ####
+            'base_general':base_general,#listo
             'retenido_general':retenido_general,
             'retenido_reducida':retenido_reducida,
             'retenido_adicional':retenido_adicional,
