@@ -28,7 +28,7 @@
                 <field name="nro_nc_seniat" string="Nro NC" invisible="0"/>
                 
             </xpath>
-            <xpath expr="//field[@name='user_id']" position="after">  
+            <xpath expr="//field[@name='employee_id']" position="after">  
                       
                 <field name="status_impresora" string="Impreso Fiscal"/>
               
