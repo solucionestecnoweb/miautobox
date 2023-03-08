@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PriceCheckerScreen" owl="1">
+        <div class="floor-screen screen">
+            <div class="screen-content-flexbox">
+                <style>
+                    .pos .pos-topheader {
+                        display: none;
+                    }
+                </style>
+                <div class="searchbox" style="left:2px;right:unset">
+                    <input placeholder="Que precios estas buscando ?" />
+                </div>
+                <t t-if="! (props and props.product)">
+                    <div class='order-empty' style="margin-top: 104px;color: gray;">
+                        <i class='fa fa-barcode' style="font-size: 120px;"/>
+                        <h1>Escanea tu producto</h1>
+                        <t t-esc="props.product"/>
+                    </div>
+                </t>
+                <t t-if="props and props.product">
+                    <div style="margin-top: 128px;">
+                        <img  t-attf-src="/web/image/product.product/{{props.product.id}}/image_1024" style="height:200px"></img>
+                        <div style="font-size: 30px;"><t t-esc="props.product.display_name"/></div>
+                        <div style="font-size: 24px;">
+                            <t t-if="!props.product.to_weight">
+                                <span class="price-tag">
+                                    Precio:
+                                    <t t-esc="env.pos.format_currency(props.product.lst_price,'Product Price')"/>
+                                    <br/>
+                                    REF:<t t-esc="env.pos.format_currency(props.product.list_price2,'Product Price')"/>
+                                </span>
+                            </t>
+                            <t t-if="props.product.to_weight">
+                                <span class="price-tag">
+                                    <t t-esc="env.pos.format_currency(props.product.lst_price,'Product Price')+'/'+env.pos.units_by_id[props.product.uom_id[0]].name"/>
+                                </span>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>
