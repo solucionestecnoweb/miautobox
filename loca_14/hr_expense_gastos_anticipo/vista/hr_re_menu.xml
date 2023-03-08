@@ -15,14 +15,14 @@
 	        <!--field name="view_id" ref="view_expenses_tree"></field-->
     	</record>
 
-    	<!--menuitem name="Registrar Pagos de Empleados"
+    	<menuitem name="Registrar Pagos de Empleados"
             id="main_pago_employee"
             parent = "hr_expense_gastos_anticipo.menu_viatico"
             sequence='3'
             action="hr_expense_gastos_anticipo.caja_pago_employee"
            />
 
-    	<menuitem
+    	<!--menuitem
         id="menu_gastos_v2"
         name="Gastos del Empleado" 
         parent="hr_expense_gastos_anticipo.menu_viatico"
