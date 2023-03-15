@@ -84,12 +84,12 @@
                                             <span t-field="line.tax_ids.name"/>
                                         </td>
                                         <td class="text-center">
-                                            <span t-field="line.price_unit_ref"/>
+                                            <!--span t-field="line.price_unit_ref"/-->
                                         </td>
                                         <td class="text-center">
                                             <span t-field="line.price_subtotal_ref"/>
                                         </td>
-                                        <t t-set="discount" t-value="discount + (line.quantity * line.price_unit_ref * line.discount) / 100" t-options='{"widget": "float", "precision": 2}'/>
+                                        <!--t t-set="discount" t-value="discount + (line.quantity * line.price_unit_ref * line.discount) / 100" t-options='{"widget": "float", "precision": 2}'/-->
                                     </tr>
                                 </t>
                             </tbody>
