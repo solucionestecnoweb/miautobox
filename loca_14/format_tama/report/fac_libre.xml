@@ -19,7 +19,7 @@
                             <strong>R.I.F: <t t-esc="docs.partner_id.vat"/></strong>
                             <br />
 
-                            <strong>Direccion: <t t-esc="docs.partner_id.state_id.name"/>, <t t-esc="docs.partner_id.city_id.name"/>, 
+                            <strong>Direccion: <t t-esc="docs.partner_id.state_id.name"/>, <t t-esc="docs.partner_id.state_id.name"/>, 
                                 <br />
                                 <t t-esc="docs.partner_id.street"/>
                             </strong>
