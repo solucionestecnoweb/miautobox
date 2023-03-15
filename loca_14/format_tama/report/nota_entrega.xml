@@ -98,7 +98,7 @@
                                     <td class="text-center">Descuento: </td>
                                     <td class="text-center"><span><t t-esc="discount"/></span></td>
                                     <td class="text-center">Total a Facturar:</td>
-                                    <td class="text-center"><span t-field="docs.amount_ref"/></td>
+                                    <td class="text-center"><!--span t-field="docs.amount_ref"/--></td>
                                 </tr>
                             </tbody>
                         </table>
