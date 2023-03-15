@@ -112,7 +112,7 @@
                             <tbody>
                                 <tr >
                                     <td class="text-center">Subtotal Exento: </td>
-                                    <td class="text-center"><span t-field="docs.amount_exento"/></td>
+                                    <td class="text-center"><!--span t-field="docs.amount_exento"/--></td>
                                     <td class="text-center">Descuento: </td>
                                     <td class="text-center"><span><t t-esc="discount"/></span></td>
                                     <td class="text-center">Subtotal:</td>
