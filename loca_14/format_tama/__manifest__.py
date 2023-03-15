@@ -4,7 +4,7 @@
     "summary": "Format Reports Tama",
     "author": "David Cartaya",
     "license": "AGPL-3",
-    "depends": ["base", "account", "sale", "purchase", "stock"],
+    "depends": ["base", "account", "sale", "purchase", "stock","l10n_ve_formato_factura_nd_nc"],
     "data": [
         'report/fac_libre.xml',
         'report/nota_credito.xml',
