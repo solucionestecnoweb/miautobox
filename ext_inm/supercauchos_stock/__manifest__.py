@@ -8,7 +8,7 @@
     "author": "Ing Gregorio Blanco",
     "website": "https://gregoriocode.com",
     "license": "AGPL-3",
-    "depends": ['base', 'stock', 'fleet', 'web', 'sale', 'purchase', 'account', 'jp_kardex_valorizado'],
+    "depends": ['base', 'stock', 'fleet', 'web', 'sale', 'purchase', 'account'],
     "data": [
        # "static/src/js/subst.xml",
         "security/ir.model.access.csv",
