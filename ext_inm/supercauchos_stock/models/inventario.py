@@ -51,7 +51,7 @@ class ProductProduct(models.Model):
 	rin = fields.Float(string='Rin')
 	medidas = fields.Char(string='Medidas')
 	construction_type = fields.Selection(string='Tipo de Construcción', selection=[('c', 'C'), ('r', 'R'),])
-	stock_inicial = fields.Float(string='Stock Inicial', compute='compute_stock_inicial', store=True)
+	#stock_inicial = fields.Float(string='Stock Inicial', compute='compute_stock_inicial', store=True)
 	no_despachado = fields.Float(string='No Despachado', compute='compute_no_despachado', store=True)
 	tier = fields.Selection(string='TIER', selection=[('1', 'TIER-1'), ('2', 'TIER-2'), ('3', 'TIER-3'), ('4', 'TIER-4'), ('5', 'TIER-5')])
 	clase = fields.Char(string='Clase', size=6)
