@@ -25,7 +25,7 @@ class TomaFisica(models.TransientModel):
     date_now = fields.Datetime(string='Date Now', default=lambda *a:(datetime.now() - timedelta(hours=4)))
     warehouse_ids = fields.Many2many('stock.location', string='Almacen')
     category_id = fields.Many2many(comodel_name='product.category', string='Categoría')
-    user_id = fields.Many2one(comodel_name='res.users', string='Usuario Activo', default=lambda x: x.env.uid)
+    user_id = fields.Many2one(comodel_name='res.users', string='Usuario Activo')
     company_ids = fields.Many2many(comodel_name='res.company', string='Compañía', default=lambda self: self.env.companies.ids)
     
     state = fields.Selection([('choose', 'choose'), ('get', 'get')],default='choose')

@@ -22,7 +22,7 @@
             <xpath expr="//field[@name='state']" position="before">
                 <!-- <button string="Situación apartado" name="change_situacion_apartado" attrs="{'invisible': [('situacion', 'in', ('Apartado', 'Analisis'))]}" type="object" class="oe_highlight"/> -->
                 <button string="Situación análisis" name="change_situacion_analisis" attrs="{'invisible': ['|',('situacion', 'in', ('Analisis', False))]}" type="object" class="oe_highlight"/>
-                <button string="Situación apartado" name="change_situacion_apartado" attrs="{'invisible': ['|',('situacion', 'in', ('Apartado', False)), ('uid', '!=', 108)]}" type="object" class="oe_highlight"/>
+                <!--button string="Situación apartado" name="change_situacion_apartado" attrs="{'invisible': ['|',('situacion', 'in', ('Apartado', False)), ('uid', '!=', 108)]}" type="object" class="oe_highlight"/-->
             </xpath>
             <xpath expr="//field[@name='order_line']" position="attributes">
                 <attribute name="attrs">{'readonly': [('state', 'in', ['sale', 'done', 'cancel'])]}</attribute>
