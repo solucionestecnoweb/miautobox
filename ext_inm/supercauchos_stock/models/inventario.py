@@ -106,6 +106,7 @@ class ProductTemplate(models.Model):
 	construction_type = fields.Selection(string='Tipo de Construcción', selection=[('c', 'C'), ('r', 'R'),])
 	tier = fields.Selection(string='TIER', selection=[('1', 'TIER-1'), ('2', 'TIER-2'), ('3', 'TIER-3'), ('4', 'TIER-4'), ('5', 'TIER-5')])
 	clase = fields.Char(string='Clase', size=6)
+	codigo_icg = fields.Char(string='Código ICG')
 
 	# @api.onchange('modelo','iva','type_cauchos','tarps','load_speed','service_in','filler','brand_id','group_id','qty_hq','deote')
 	# def values_onchange(self):
