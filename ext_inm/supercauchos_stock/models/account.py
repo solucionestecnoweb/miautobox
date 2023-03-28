@@ -17,6 +17,7 @@ class AccountMoveLine(models.Model):
 
     filler = fields.Float(string='Filler', related='product_id.filler')
     fillert = fields.Float(string='FillerT')
+    need_vehicle = fields.Char()
 
     @api.onchange('product_id', 'quantity')
     def onchange_filler(self):
