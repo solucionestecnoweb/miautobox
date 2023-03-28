@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="view_pos_config_form_inherit" model="ir.ui.view">
+        <field name="name">POS configuration</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//h2[last()]" position="before">
+                <h2 name="order">POS Validación Cliente</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box" invisible="1">
+                            <div class="o_setting_left_pane">
+                                <field name="required_email"/>
+                            </div>
+                            <div class="o_setting_right_pane" >
+                                <label for="required_email" string="Require Email"/>
+                                <div class="text-muted">
+                                    Require email address
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" invisible="1">
+                            <div class="o_setting_left_pane">
+                                <field name="unique_email"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="unique_email" string="Unique Email"/>
+                                <div class="text-muted">
+                                    Unique email address
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="required_phone"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="required_phone"/>
+                                <div class="text-muted">
+                                    Require phone number
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="required_name"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="required_name"/>
+                                <div class="text-muted">
+                                    Razón Social Requerida
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="required_vat"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="required_vat"/>
+                                <div class="text-muted">
+                                    Cedula/Rif Requerido
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="required_street"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="required_street"/>
+                                <div class="text-muted">
+                                    Direccion Requerido
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="required_city"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="required_city"/>
+                                <div class="text-muted">
+                                    Ciudad Requerido
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" invisible="1">
+                            <div class="o_setting_left_pane">
+                                <field name="unique_phone"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="unique_phone" string="Unique Phone"/>
+                                <div class="text-muted">
+                                    Unique phone number
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" invisible="1">
+                            <div class="o_setting_left_pane">
+                                <field name="required_barcode"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="required_barcode" string="Require Barcode"/>
+                                <div class="text-muted">
+                                    Require barcode
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" invisible="1">
+                            <div class="o_setting_left_pane">
+                                <field name="unique_barcode"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="unique_barcode" string="Unique Barcode"/>
+                                <div class="text-muted">
+                                    Unique barcode
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
