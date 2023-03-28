@@ -56,7 +56,7 @@ class FlotaAsignaciones(models.Model):
     _order = 'id desc'
 
     name = fields.Char(string='Referencia', default='Nuevo')
-    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehículo')
+    vehicle_id = fields.Many2one('fleet.vehicle2', string='Vehículo')
     driver_id = fields.Many2one('res.partner', string='Conductor')
     date_ini = fields.Date(string='Desde')
     date_end = fields.Date(string='Hasta')
@@ -78,8 +78,7 @@ class FlotaAsignaciones(models.Model):
     loaded_filler = fields.Float(string='Filler Cargado')
 
 class FleetVehicle(models.Model):
-    _inherit = ['mail.thread', 'mail.activity.mixin']
-    _name = 'fleet.vehicle'
+    _name = 'fleet.vehicle2'
     _description = 'Vehicle'
     _order = 'license_plate asc, acquisition_date asc'
 

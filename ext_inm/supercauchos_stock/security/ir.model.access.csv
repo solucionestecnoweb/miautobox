@@ -4,4 +4,4 @@ acces_product_group,product.group,model_product_group,base.group_user,1,1,1,1
 acces_stock_wizard_picking,stock.wizard.picking,model_stock_wizard_picking,base.group_user,1,1,1,1
 acces_stock_wizard_toma_fisica,stock.wizard.toma.fisica,model_stock_wizard_toma_fisica,base.group_user,1,1,1,1
 acces_fleet_vehicle_log_assignment_control,fleet.vehicle.log.assignment.control,model_fleet_vehicle_log_assignment_control,base.group_user,1,1,1,1
-acces_fleet_vehicle,fleet.vehicle,model_fleet_vehicle,base.group_user,1,1,1,1
+acces_fleet_vehicle2,fleet.vehicle2,model_fleet_vehicle2,base.group_user,1,1,1,1
