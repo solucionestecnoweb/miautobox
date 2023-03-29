@@ -15,4 +15,4 @@ import time
 class StockWarehouse(models.Model):
 	_inherit = "stock.warehouse"
 
-	code = fields.Char('Short Name', required=True, size=15, help="Short name used to identify your warehouse")
+	code = fields.Char('Short Name', required=True, size=20, help="Short name used to identify your warehouse")
