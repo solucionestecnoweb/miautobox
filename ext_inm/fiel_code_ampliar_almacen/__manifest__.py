@@ -8,7 +8,7 @@
     "author": "Ing Darrell Sojo",
     "website": "",
     "license": "AGPL-3",
-    "depends": ['base', 'product','	stock'],
+    "depends": ['base', 'product','stock'],
     "data": [
        # "static/src/js/subst.xml",
         #"security/ir.model.access.csv",
