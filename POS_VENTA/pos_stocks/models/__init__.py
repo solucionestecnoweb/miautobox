@@ -6,4 +6,4 @@
 #   License URL : <https://store.webkul.com/license.html/>
 # 
 #################################################################################
-from . import pos_config, product
+from . import pos_config

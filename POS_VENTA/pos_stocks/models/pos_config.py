@@ -4,24 +4,23 @@
 #   Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>)
 #   See LICENSE file for full copyright and licensing details.
 #   License URL : <https://store.webkul.com/license.html/>
-# 
+#
 #################################################################################
-from  odoo import fields,models,api
-import logging
-_logger = logging.getLogger(__name__)
+from odoo import fields, models, api
 
 class PosConfig(models.Model):
     _inherit = 'pos.config'
-    
-    wk_display_stock =  fields.Boolean('Display stock in POS',default=True)
-    wk_stock_type = fields.Selection([('available_qty', 'Available Quantity(On hand)'), ('forecasted_qty', 'Forecasted Quantity'), ('virtual_qty', 'Quantity on Hand - Outgoing Qty')],string='Stock Type',default='available_qty')
+
+    wk_display_stock = fields.Boolean('Display stock in POS', default=True)
+    wk_stock_type = fields.Selection([('available_qty', 'Available Quantity(On hand)'), ('forecasted_qty', 'Forecasted Quantity'), (
+        'virtual_qty', 'Quantity on Hand - Outgoing Qty')], string='Stock Type', default='available_qty', required=True)
     wk_continous_sale = fields.Boolean('Allow Order When Out-of-Stock')
     wk_deny_val = fields.Integer('Deny order when product stock is lower than ')
-    wk_error_msg = fields.Char(string='Custom message',default="Product out of stock")
-    wk_hide_out_of_stock = fields.Boolean(string="Hide Out of Stock products",default=True)
+    wk_error_msg = fields.Char(string='Custom message', default="Product out of stock")
+    wk_hide_out_of_stock = fields.Boolean(string="Hide Out of Stock products", default=True)
 
     @api.model
-    def wk_pos_fetch_pos_stock(self,kwargs):
+    def wk_pos_fetch_pos_stock(self, kwargs):
         result = {}
         location_id = False
         wk_stock_type = kwargs['wk_stock_type']
@@ -30,8 +29,10 @@ class PosConfig(models.Model):
         picking_type = config_id.picking_type_id
         location_id = picking_type.default_location_src_id.id
         product_obj = self.env['product.product']
-        pos_products = product_obj.search([('sale_ok', '=', True),('available_in_pos', '=', True)])
-        pos_products_qtys = pos_products.with_context(location=location_id)._product_available()
+        pos_products = product_obj.search(
+            [('sale_ok', '=', True), ('available_in_pos', '=', True)])
+        pos_products_qtys = pos_products.with_context(location=location_id)._compute_quantities_dict(self._context.get(
+            'lot_id'), self._context.get('owner_id'), self._context.get('package_id'), self._context.get('from_date'), self._context.get('to_date'))
         for pos_product in pos_products_qtys:
             if wk_stock_type == 'available_qty':
                 result[pos_product] = pos_products_qtys[
