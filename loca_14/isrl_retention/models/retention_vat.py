@@ -152,7 +152,7 @@ class RetentionVat(models.Model):
         valor_aux=0
         #raise UserError(_('moneda compañia: %s')%self.company_id.currency_id.id)
         if self.invoice_id.currency_id.id!=self.invoice_id.company_id.currency_id.id:
-            tasa= self.env['res.currency.rate'].search([('currency_id','=',self.invoice_id.currency_id.id),('name','<=',self.invoice_id.date)],order="name asc")
+            tasa= self.env['res.currency.rate'].search([('currency_id','=',self.invoice_id.currency_id.id),('name','<=',self.invoice_id.invoice_date)],order="name asc")
             for det_tasa in tasa:
                 if fecha_contable_doc>=det_tasa.name:
                     valor_aux=det_tasa.rate
@@ -164,6 +164,7 @@ class RetentionVat(models.Model):
         return resultado
 
     def registro_movimiento_retencion(self,consecutivo_asiento):
+        
         #raise UserError(_('darrell = %s')%self.partner_id.vat_retention_rate)
         name = consecutivo_asiento
         signed_amount_total=0
@@ -190,6 +191,8 @@ class RetentionVat(models.Model):
         value = {
             'name': name,
             'date': self.invoice_id.date,#listo
+            'invoice_date':self.move_id.invoice_date,
+            'asiento_retencion':True,
             #'amount_total':self.vat_retentioned,# LISTO
             'partner_id': self.partner_id.id, #LISTO
             'journal_id':id_journal,
