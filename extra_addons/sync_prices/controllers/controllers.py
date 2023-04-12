@@ -36,6 +36,7 @@ class SalesOrderController(http.Controller, FormatChecker):
             'cant_items_created': cant_product_create
         }
 
+
     def update_item_in_pricelist(self, products_exist):
         """Update items in the price list"""
 
@@ -43,15 +44,20 @@ class SalesOrderController(http.Controller, FormatChecker):
 
         for items_in_product_exist in products_exist:
             for items_in_pricelist_id in items_in_product_exist['pricelist_IdS']:
+
                 records = request.env['product.pricelist.item'].sudo().search(
                     [('product_tmpl_id','=', items_in_product_exist['Odoo_Id'])])
+    
                 for items_in_records in records:
+
                     if items_in_records.pricelist_id.id == items_in_pricelist_id:
+
                         items_in_records.sudo().update(
                             {'fixed_price': items_in_product_exist['UOMPRICE']})
                         cant_product_update += 1
 
         return cant_product_update
+
 
     def create_item_in_pricelist(self, products_not_exist):
         """Create items in the price list"""
@@ -60,7 +66,9 @@ class SalesOrderController(http.Controller, FormatChecker):
 
         for items_in_products_not_exists in products_not_exist:
             for items_in_pricelist_id in items_in_products_not_exists['pricelist_IdS']:
+
                 cant_product_create += 1
+
                 request.env['product.pricelist.item'].sudo().create({
                     'product_tmpl_id': items_in_products_not_exists['Odoo_Id'],
                     'applied_on': '1_product',
@@ -71,6 +79,7 @@ class SalesOrderController(http.Controller, FormatChecker):
                 })
 
         return cant_product_create
+
 
     @http.route('/deletePrices', auth='public', type='json', methods=['POST'])
     def empty_all_records_in_pricelists(self):
@@ -85,16 +94,18 @@ class SalesOrderController(http.Controller, FormatChecker):
             'cant_product_delete': len(products_id)
         }
 
+
     @http.route('/deleteInPriceList', auth='public', type='json', methods=['POST'])
     def format_empty_specific_pricelist(self):
         """Checking the format of the emptying request in specific lists"""
 
         try:
-            data_serialized = self.mapping_of_filtered_data(request.jsonrequest, True)
+            data_serialized = self.mapping_of_filtered_data(request.jsonrequest['data'], True)
             return self.empty_specific_pricelist(data_serialized)
 
         except Exception as message_error:
             return message_error
+
 
     def empty_specific_pricelist(self, data_serialized):
         """Empty specific pricelist"""
