@@ -6,7 +6,7 @@ from .format_checker import FormatChecker
 class SalesOrderController(http.Controller, FormatChecker):
     """Sales order Controller"""
 
-    @http.route('/syncPrices', auth='public', type='json', methods=['POST'])
+    @http.route('/syncPrices', auth='user', type='json', methods=['POST'])
     def format_verify_pricelist(self):
         """Checking the price list format for creating or updating the price list"""
 
@@ -81,7 +81,7 @@ class SalesOrderController(http.Controller, FormatChecker):
         return cant_product_create
 
 
-    @http.route('/deletePrices', auth='public', type='json', methods=['POST'])
+    @http.route('/deletePrices', auth='user', type='json', methods=['POST'])
     def empty_all_records_in_pricelists(self):
         """Empty all records in pricelists"""
 
@@ -95,7 +95,7 @@ class SalesOrderController(http.Controller, FormatChecker):
         }
 
 
-    @http.route('/deleteInPriceList', auth='public', type='json', methods=['POST'])
+    @http.route('/deleteInPriceList', auth='user', type='json', methods=['POST'])
     def format_empty_specific_pricelist(self):
         """Checking the format of the emptying request in specific lists"""
 

@@ -4,7 +4,7 @@ from odoo.http import request
 class StockController(http.Controller):
     """Stock Controller"""
 
-    @http.route('/sync_stock', auth='public', type='json', methods=['POST'])
+    @http.route('/sync_stock', auth='user', type='json', methods=['POST'])
     def post_sync_stock(self):
         """Get data to build a new receipts in stock"""
         try:
