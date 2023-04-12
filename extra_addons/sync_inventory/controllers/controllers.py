@@ -4,7 +4,7 @@ from odoo.http import request
 class StockController(http.Controller):
     """Stock Controller"""
 
-    @http.route('/sync_stock', auth='user', type='json', methods=['POST'])
+    @http.route('/sync_stock', auth='public', type='json', methods=['POST'])
     def post_sync_stock(self):
         """Get data to build a new receipts in stock"""
         try:
@@ -19,28 +19,29 @@ class StockController(http.Controller):
         #Step 3: Filled the items in the stock.
         #Step 4: Clear the items to confirm the stock.
         #Step 5: Confirm items in stock.
-        #Step 6: Update status in stock
-        #Step 7: Prepare the qty available in the stock
-        #Step 8: Set the total qty transferred
-        @return: cant_object_processed
+        #Step 6: Update status in stock.
+        #Step 7: Prepare the qty available in the stock.
+        #Step 8: Set the total qty transferred.
+        @return: cant_object_processed.
         """
 
         stock = self.create_new_stock(data_serialized)
-        prepare_items = self.prepare_items_for_stock(data_serialized, stock)
+        prepare_items = list(self.prepare_items_for_stock(data_serialized, stock))
         stock_moves = self.create_stock_move(prepare_items)
-        prepare_items_confirm = self.clean_items_for_confirm(stock_moves)
+        prepare_items_confirm = list(self.clean_items_for_confirm(stock_moves))
         stock_moves_line = self.confirm_stock_move_line(prepare_items_confirm)
-        
-        self.update_status_to_stock(stock['stock'])
+
+        self.update_status_to_stock(stock['stock'], stock_moves)
         self.transfer_qty_available(data_serialized)
         
         return {
             'cant_object_processed': stock_moves_line
         }
 
+
     def create_new_stock(self, data_serialized):
         """Create the new header to which the stock will be uploaded."""
-
+        
         head_request = {
                 'company_id': data_serialized['company_id'],
 		    	'picking_type_id': data_serialized['picking_type_id'],
@@ -55,6 +56,7 @@ class StockController(http.Controller):
                 head_request.update({'partner_id': data_serialized['partner_id']})
 
         stock = request.env['stock.picking'].sudo().create(head_request)
+
         return {
             'head': head_request,
             'stock': stock
@@ -80,37 +82,42 @@ class StockController(http.Controller):
                 new_item.update({'picking_partner_id': stock['head']['partner_id']})
 
             yield new_item
+            
 
-    def create_stock_move(self, prepare_items):
+    def create_stock_move(self, items_serialized):
         """Filled the items in the stock."""
-
+        
         items_with_stock = []
-        for items in prepare_items:
+        for items in items_serialized:
             move = request.env['stock.move'].sudo().create(items)
             items['move_id'] = move.id
+            
             items_with_stock.append(items)
 
         return items_with_stock
 
+
     def clean_items_for_confirm(self, stock_moves):
         """Clear the items to confirm the stock"""
-
+        
         for items in stock_moves:
             if 'picking_partner_id' in items:
                 del items['picking_partner_id']
 
             del items['name']
             del items['procure_method']
+
             items['product_uom_id'] = items['product_uom']
             del items['product_uom']
-            items['qty_done'] = items['product_uom_qty']
 
+            items['qty_done'] = items['product_uom_qty']
+            items['state'] = 'done'
+            
             yield items
 
 
     def confirm_stock_move_line(self, stock_moves):
         """Confirm items in stock"""
-
         cant_object_processed = 0
 
         for items in stock_moves:
@@ -119,12 +126,24 @@ class StockController(http.Controller):
 
         return cant_object_processed
 
-    def update_status_to_stock(self, stock):
+
+    def update_status_to_stock(self, stock, stock_move):
         """Update status in stock"""
         
-        return stock.sudo().update({
+        stock.sudo().update({
             'state': 'done'
         })
+
+        for items in stock_move:
+            update_stock_move = request.env['stock.move'].sudo().search([
+                ('id', '=', items['move_id']),
+            ])
+                
+            update_stock_move.sudo().update({
+                'state': 'done'
+            })
+
+        return True
 
 
     def prepare_qty_available(self, data_serialized):
@@ -176,21 +195,31 @@ class StockController(http.Controller):
         fields_update = self.prepare_fields_for_update(data_serialized['products'])
 
         for items_products in fields_update['products']:
-            product = request.env['product.template'].sudo().search([(
+            product_template = request.env['product.template'].sudo().search([(
+                'id', '=', items_products['id']
+            )])
+
+            product_product = request.env['product.product'].sudo().search([(
                 'id', '=', items_products['id']
             )])
 
             if 'default_code' in items_products and (
-                items_products['default_code'] == product.default_code):
+                items_products['default_code'] == product_template.default_code):
 
                 del items_products['default_code']
                 del items_products['id']
 
-                product.sudo().update(items_products)
+                product_template.sudo().update(items_products)
+                product_product.update({
+                    'product_tmpl_id': product_template
+                })
 
             else:
                 del items_products['id']
-                product.sudo().update(items_products)
+                product_template.sudo().update(items_products)
+                product_product.update({
+                    'product_tmpl_id': product_template
+                })
 
             cant_product_update += 1
         
