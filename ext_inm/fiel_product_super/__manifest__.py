@@ -15,7 +15,7 @@
         "security/situacion_groups.xml",
         "views/inventory_products.xml",
         "views/brands_views.xml",
-        #"views/account_move.xml",
+        "views/id_almacenes.xml",
         #"views/sale_order.xml",
         #"views/purchase_order.xml",
         #"report/inventario_toma_fisica.xml",
