@@ -33,6 +33,8 @@
                 </xpath>
                 <xpath expr="//field[@name='default_code']" position="after">
                     <field name="codigo_icg"/>
+                    <field name="gp" string="GP"/>
+                    <field name="codigo_magento" string="Código Magento"/>
                     
                 </xpath>
             </field>
@@ -52,6 +54,8 @@
                     <field name="load_speed"/>
                     <field name="rin"/>
                     <field name="tier"/>
+                    <field name="gp" string="GP"/>
+                    <field name="codigo_magento" string="Código Magento"/>
                 </xpath>
                 <xpath expr="//field[@name='type']" position="after">
                     <field name="type_cauchos"/>

@@ -33,6 +33,8 @@ class ProductProduct(models.Model):
 	medidas = fields.Char(string='Medidas')
 	construction_type = fields.Selection(string='Tipo de Construcción', selection=[('c', 'C'), ('r', 'R'),])
 	clase = fields.Char(string='Clase', size=6)
+	gp = fields.Char()
+	codigo_magento = fields.Char()
 
 	
 class ProductTemplate(models.Model):
@@ -56,6 +58,8 @@ class ProductTemplate(models.Model):
 	medidas = fields.Char(string='Medidas')
 	construction_type = fields.Selection(string='Tipo de Construcción', selection=[('c', 'C'), ('r', 'R'),])
 	clase = fields.Char(string='Clase', size=6)
+	gp = fields.Char()
+	codigo_magento = fields.Char()
 	
 
 	# @api.onchange('modelo','iva','type_cauchos','tarps','load_speed','service_in','filler','brand_id','group_id','qty_hq','deote')
@@ -87,6 +91,8 @@ class ProductTemplate(models.Model):
 			product.construction_type = self.construction_type
 			product.tier = self.tier
 			product.clase = self.clase
+			product.gp = self.gp
+			product.codigo_magento = self.codigo_magento
 
 		return res
 
@@ -111,6 +117,8 @@ class ProductTemplate(models.Model):
 			product.construction_type = self.construction_type
 			product.tier = self.tier
 			product.clase = self.clase
+			product.gp = self.gp
+			product.codigo_magento = self.codigo_magento
 
 class MarcasProductos(models.Model):
 	_name = 'product.brand'
