@@ -19,6 +19,7 @@
         "views/id_ubicaciones.xml",
         "views/id_categ_product.xml",
         'views/id_tipo_operaciones.xml',
+        'views/id_tarifas.xml',
         #"report/inventario_toma_fisica.xml",
         #"report/inventario_picking_salidas.xml",
         #"report/delivery_order_report.xml",
