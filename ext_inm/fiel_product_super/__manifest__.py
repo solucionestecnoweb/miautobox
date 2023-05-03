@@ -16,7 +16,7 @@
         "views/inventory_products.xml",
         "views/brands_views.xml",
         "views/id_almacenes.xml",
-        #"views/sale_order.xml",
+        "views/id_ubicaciones.xml",
         #"views/purchase_order.xml",
         #"report/inventario_toma_fisica.xml",
         #"report/inventario_picking_salidas.xml",
