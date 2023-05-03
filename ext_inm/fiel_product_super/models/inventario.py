@@ -35,6 +35,7 @@ class ProductProduct(models.Model):
 	clase = fields.Char(string='Clase', size=6)
 	gp = fields.Char()
 	codigo_magento = fields.Char()
+	qty_available = fields.Char()
 
 	
 class ProductTemplate(models.Model):
@@ -60,6 +61,7 @@ class ProductTemplate(models.Model):
 	clase = fields.Char(string='Clase', size=6)
 	gp = fields.Char()
 	codigo_magento = fields.Char()
+	qty_available = fields.Char()
 	
 
 	# @api.onchange('modelo','iva','type_cauchos','tarps','load_speed','service_in','filler','brand_id','group_id','qty_hq','deote')
