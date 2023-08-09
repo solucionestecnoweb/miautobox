@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_stock_quant_not_edit" name="Buscador Productos" web_icon="branch_office,static/description/icon.png"
+        sequence="40"/>
+        <menuitem
+                id="menu_stock_quant_tree_not_editable"
+                name="Cantidad a mano"
+                action="action_stock_quant_tree_not_editable"
+                parent="menu_stock_quant_not_edit"
+                sequence="5"
+        />
+
+        <menuitem id="menu_branch_offices" name="Sucursales" parent="account.menu_finance_configuration" sequence="30"/>
+            <menuitem
+                id="menu_branch_office"
+                name="Sucursal"
+                action="action_branch_office"
+                parent="menu_branch_offices"
+                sequence="5"
+            />
+    </data>
+</odoo>

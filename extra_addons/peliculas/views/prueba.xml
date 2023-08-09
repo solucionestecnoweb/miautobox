@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="view_sale_order_custom" model="ir.ui.view">
+            <field name="name">view.sale.order.custom</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+           <xpath expr="//field[@name='x_iva']" position="after">
+
+                <button string="IVA 16%" type="object" name="SpecialCommand6"/>
+            </xpath>
+            </field>
+        </record>
+
+
+
+
+
+
+   <!--
+
+         <field name="description_sale" filter_domain="[('description_sale', 'ilike',self)]"/>
+
+    <record model="ir.ui.view" id="view_sale_order_custom">
+        <field name="name">sale.order.custom.form.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+               <field name="custom_field"/>
+            </xpath>
+
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="attributes">
+                <attribute name="options">
+                    {'no_create': True}
+                </attribute>
+            </xpath>
+            -->
+
+
+    </data>
+</odoo>
