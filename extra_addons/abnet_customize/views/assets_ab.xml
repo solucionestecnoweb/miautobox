@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-	<template id="assets_backend" name="abnet_customize_assets" inherit_id="web.assets_backend">
-		<xpath expr="." position="inside">
-			<link rel="stylesheet" href="/abnet_customize/static/src/css/custom_crm_ab.css" />
-		</xpath>
-	</template>
-</odoo>
