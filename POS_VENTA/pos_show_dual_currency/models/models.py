@@ -31,4 +31,4 @@ class PosConfig(models.Model):
         lista=self.env['res.currency.rate'].search([('company_id','=',self.company_id.id)],limit=1,order='hora desc')
         if lista:
             valor=lista.rate_real
-        self.show_currency_rate_real=valor
+        self.show_currency_rate_real=round(valor,2)
