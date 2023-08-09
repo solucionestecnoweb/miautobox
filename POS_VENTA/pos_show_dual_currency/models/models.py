@@ -1,3 +1,4 @@
+
 from odoo import fields, models
 class PosConfig(models.Model):
     _inherit = "pos.config"
@@ -8,11 +9,12 @@ class PosConfig(models.Model):
 
     rate_company = fields.Float(string='Rate', related='currency_id.rate')
 
-    show_currency = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env['res.currency'].search([('name', '=', 'USD')], limit=1))
+    show_currency = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env['res.currency'].search([('name', '=', 'USD'),('company_id','=',self.company_id.id)], limit=1))
 
     show_currency_rate = fields.Float(string='Rate', related='show_currency.rate')
 
-    show_currency_rate_real = fields.Float(string='Rate', related='show_currency.rate_real')# darrell
+    #show_currency_rate_real = fields.Float(string='Rate', related='show_currency.rate_real')
+    show_currency_rate_real = fields.Float(string='Rate', compute='_compute_tasa')
 
     show_currency_symbol = fields.Char(related='show_currency.symbol')
 
@@ -23,3 +25,10 @@ class PosConfig(models.Model):
     default_location_src_id = fields.Many2one(
         "stock.location", related="picking_type_id.default_location_src_id"
     )
+
+    def _compute_tasa(self):
+        valor=1
+        lista=self.env['res.currency.rate'].search([('company_id','=',self.company_id.id)],limit=1,order='hora desc')
+        if lista:
+            valor=lista.rate_real
+        self.show_currency_rate_real=valor

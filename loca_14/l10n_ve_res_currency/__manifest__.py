@@ -19,6 +19,8 @@
     'data': [
         # 'security/ir.model.access.csv',
         #'views/account_invoice_inherit.xml',
+        'data/data.xml',
+        #'views/exchange_rate.xml',
         'views/res_currency_rate_inherit_.xml',
         'views/product_templete_inherit.xml',
 
@@ -27,5 +29,16 @@
     'demo': [
         #'demo/demo.xml',
     ],
+
     'application': True,
+    'qweb': [
+        'static/src/xml/systray.xml',
+    ],
+    'assets':{
+        'web.assets_backend': [
+            'l10n_ve_res_currency/static/src/js/systray_theme_menu.js'
+        ],'web.assets_qweb': [
+            'l10n_ve_res_currency/static/src/xml/**/*',
+        ],
+    },
 }

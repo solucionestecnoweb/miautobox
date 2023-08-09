@@ -53,7 +53,7 @@ class SaleOrder(models.Model):
             record[("tax_today_two")]       =  0 
             if record.currency_id_dif:
                 if record.manual_currency_exchange_rate != 0:
-                        record[("amount_total_ref")]    = record['amount_total']*record.manual_currency_exchange_rate if self.env.company.currency_id == record['currency_id'] else record['amount_total']/record.manual_currency_exchange_rate
+                        record[("amount_total_ref")]    = record['amount_total']/record.manual_currency_exchange_rate if self.env.company.currency_id == record['currency_id'] else record['amount_total']*record.manual_currency_exchange_rate
                         #record[("amount_total_ref")]    = sum(record.order_line.mapped('price_subtotal_ref'))
                         record[("tax_today")]           = 1*record.manual_currency_exchange_rate
                         record[("tax_today_two")]       = 1/record.manual_currency_exchange_rate
@@ -75,7 +75,8 @@ class SaleOrder(models.Model):
     tax_today           = fields.Float(store=True,readonly=True, default=0,digits=(20,10),string='Tasa del Día $') 
     tax_today_two       = fields.Float(store=True,readonly=True, default=0,digits=(20,10),string='Tasa del Día Bs') 
     amount_total_ref    = fields.Float(string='Monto Ref', store=True, readonly=True, compute='_compute_amount_total_ref', tracking=4, default=0)
-    manual_currency_exchange_rate = fields.Float(string='Tipo de tasa manual', digits=(20,10),default=lambda self: self.env.company.currency_id.parent_id.rate)
+    #manual_currency_exchange_rate = fields.Float(string='Tipo de tasa manual', digits=(20,10),default=lambda self: self.env.company.currency_id.parent_id.rate)
+    manual_currency_exchange_rate = fields.Float(string='Tipo de tasa manual', digits=(20,10),default=13)
     intercambio = fields.Boolean(string="Intercambio hecho",default=False)
     
     def _prepare_invoice(self):

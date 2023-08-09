@@ -45,10 +45,17 @@ class SalesOrder(models.Model):
             })
         return result
 
-    @api.onchange('apply_manual_currency_exchange')
+    @api.onchange('apply_manual_currency_exchange','date_order')
     def _onchange_apply_manual_currency_exchange(self):
         for rec in self:
-            rec.manual_currency_exchange_rate = self.env.company.currency_id.parent_id.rate
+            rec.manual_currency_exchange_rate = self.tasa_sale_order()#self.env.company.currency_id.parent_id.rate
+
+    def tasa_sale_order(self):
+        valor=1
+        busca=self.env['res.currency.rate'].search([('name','=',self.date_order)],order='name desc',limit=1)
+        if busca:
+            valor=busca.rate_real
+        return valor
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'

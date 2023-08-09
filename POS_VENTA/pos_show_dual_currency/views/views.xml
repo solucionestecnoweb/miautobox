@@ -18,6 +18,8 @@
                         <div class="content-group mt16 row"  attrs="{'invisible':[('show_dual_currency','=',False)]}">
                             <label for="show_currency" string="Currency"  class="col-lg-3 o_light_label"/>
                             <field name="show_currency"   />
+                            <field name="show_currency_rate_real" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
                         </div>
                         <div class="content-group mt16 row"  attrs="{'invisible':[('show_dual_currency','=',False)]}">
                              <label for="show_currency_rate" string="Rate"  class="col-lg-3 o_light_label"/>

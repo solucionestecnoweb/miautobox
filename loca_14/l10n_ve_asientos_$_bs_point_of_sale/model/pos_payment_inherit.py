@@ -26,5 +26,5 @@ class PosPayment(models.Model):
             lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('hora','<=',selff.payment_date)],order='id ASC')
             if lista_tasa:
                 for det in lista_tasa:
-                    valor=selff.amount*det.rate
+                    valor=selff.amount/round(det.rate_real,2)
             selff.amount_total_signed_aux_bs=valor

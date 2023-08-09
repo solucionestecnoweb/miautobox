@@ -14,42 +14,35 @@
 # If not, see <https://store.webkul.com/license.html/>
 #################################################################################
 {
-    "name"          :   "POS Stock",
-    "summary"       :   """The user can display the product quantities on the Odoo POS with the module. If set, The user cannot add out of stock products to the POS cart.Show product quantity in POS|Out of stock products|Added product quantities|POS product stock|Show stock pos.""",
-    "category"      :   "Point of Sale",
-    "version"       :   "1.0.4",
-    "sequence"      :   1,
-    "author"        :   "Webkul Software Pvt. Ltd.",
-    "license"       :   "Other proprietary",
-    "website"       :   "https://store.webkul.com/Odoo-POS-Stock.html",
-    "description"   :   """Odoo POS Stock
-                        Show product quantity in POS
-                        Out of stock products
-                        Out-of-stock products POS
-                        Added product quantities
-                        POS product stock
-                        Show stock pos
-                        Manage POS stock
-                        Product management POS""",
-    "live_test_url" :   "http://odoodemo.webkul.com/?module=pos_stocks&custom_url=/pos/auto",
-    "depends"       :   ['point_of_sale'],
-    "data"          :   ['views/pos_config_view.xml'],
-    'assets'        :   {
-                            'point_of_sale.assets': [
-                                "/pos_stocks/static/src/js/screens.js",
-                                "/pos_stocks/static/src/js/models.js",
-                                "/pos_stocks/static/src/js/popups.js",
-                                "/pos_stocks/static/src/css/pos_stocks.css",
+  "name"                 :  "POS Stock",
+  "summary"              :  """The user can display the product quantities on the Odoo POS with the module. If set, The user cannot add out of stock products to the POS cart.""",
+  "category"             :  "Point of Sale",
+  "version"              :  "1.0.1",
+  "sequence"             :  1,
+  "author"               :  "Webkul Software Pvt. Ltd.",
+  "license"              :  "Other proprietary",
+  "website"              :  "https://store.webkul.com/Odoo-POS-Stock.html",
+  "description"          :  """Odoo POS Stock
+Show product quantity in POS
+Out of stock products
+Out-of-stock products POS
+Added product quantities
+POS product stock
+Show stock pos
+Manage POS stock
+Product management POS""",
+  "live_test_url"        :  "http://odoodemo.webkul.com/?module=pos_stocks&custom_url=/pos/auto",
+  "depends"              :  ['point_of_sale','mrp'],
+  "data"                 :  [
+                             'views/pos_config_view.xml',
+                             'views/template.xml',
                             ],
-                            'web.assets_qweb': [
-                                'pos_stocks/static/src/xml/**/*',
-                            ],
-                        },
-    "images"        :  ['static/description/Banner.png'],
-    "application"   :  True,
-    "installable"   :  True,
-    "auto_install"  :  False,
-    "price"         :  47,
-    "currency"      :  "USD",
-    "pre_init_hook" :  "pre_init_check",
+  "qweb"                 :  ['static/src/xml/pos.xml'],
+  "images"               :  ['static/description/Banner.png'],
+  "application"          :  True,
+  "installable"          :  True,
+  "auto_install"         :  False,
+  "price"                :  47,
+  "currency"             :  "USD",
+  "pre_init_hook"        :  "pre_init_check",
 }

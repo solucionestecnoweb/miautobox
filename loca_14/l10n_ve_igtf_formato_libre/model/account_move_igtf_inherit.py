@@ -65,13 +65,19 @@ class AccountPaymentIgtf(models.TransientModel):
         tasa=1
         if self.currency_id.id==self.env.company.currency_id.id:
             #busca=self.env['res.currency.rate'].search([('currency_id','=',self.currency_id.id),('name','<=',self.invoice_date)],order='name asc')
-            busca=self.env['res.currency.rate'].search([('currency_id','=',2),('name','<=',det.invoice_date)],order='name asc')
-            if busca:
-                for det in busca:
-                    tasa=1/det.rate
+            if self.apply_manual_currency_exchange==False:
+                busca=self.env['res.currency.rate'].search([('currency_id','=',2),('name','<=',det.invoice_date)],order='name asc')
+                if busca:
+                    for det in busca:
+                        tasa=1/det.rate
+            else:
+                tasa=self.manual_currency_exchange_rate
         else:
-            if self.amount_total or self.amount_total!=0:
-                tasa=self.amount_total_signed/self.amount_total
+            if self.apply_manual_currency_exchange==False:
+                if self.amount_total or self.amount_total!=0:
+                    tasa=self.amount_total_signed/self.amount_total
+            else:
+                tasa=self.manual_currency_exchange_rate
         return tasa
 
 
@@ -184,13 +190,19 @@ class AccountMove(models.Model):
         tasa=1
         if self.currency_id.id==self.env.company.currency_id.id:
             #busca=self.env['res.currency.rate'].search([('currency_id','=',self.currency_id.id),('name','<=',self.invoice_date)],order='name asc')
-            busca=self.env['res.currency.rate'].search([('currency_id','=',2),('name','<=',self.invoice_date)],order='name asc')
-            if busca:
-                for det in busca:
-                    tasa=1/det.rate
+            if self.apply_manual_currency_exchange==False:
+                busca=self.env['res.currency.rate'].search([('currency_id','=',2),('name','<=',self.invoice_date)],order='name asc')
+                if busca:
+                    for det in busca:
+                        tasa=1/det.rate
+            else:
+                tasa=self.manual_currency_exchange_rate
         else:
-            if self.amount_total or self.amount_total!=0:
-                tasa=self.amount_total_signed/self.amount_total
+            if self.apply_manual_currency_exchange==False:
+                if self.amount_total or self.amount_total!=0:
+                    tasa=self.amount_total_signed/self.amount_total
+            else:
+                tasa=self.manual_currency_exchange_rate
         return tasa
 
     def _compute_taxes_group(self):

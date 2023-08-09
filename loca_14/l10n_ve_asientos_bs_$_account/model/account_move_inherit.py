@@ -28,7 +28,7 @@ class AccountMove(models.Model):
                 lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('name','<=',selff.date)],order='id ASC')
                 if lista_tasa:
                     for det in lista_tasa:
-                        valor=selff.amount_total_signed*det.rate
+                        valor=selff.amount_total_signed/round(det.rate_real,2)
             selff.amount_total_signed_aux_bs=valor
             selff.amount_total_signed_bs=valor
 
@@ -42,7 +42,7 @@ class AccountMove(models.Model):
                 lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('name','<=',selff.date)],order='id ASC')
                 if lista_tasa:
                     for det in lista_tasa:
-                        valor=selff.amount_untaxed_signed*det.rate
+                        valor=selff.amount_untaxed_signed/round(det.rate_real,2)
             selff.amount_untaxed_signed_bs=valor
 
     def _compute_monto_conversion_residual(self):
@@ -55,7 +55,7 @@ class AccountMove(models.Model):
                 lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('name','<=',selff.date)],order='id ASC')
                 if lista_tasa:
                     for det in lista_tasa:
-                        valor=selff.amount_residual_signed*det.rate
+                        valor=selff.amount_residual_signed/round(det.rate_real,2)
             selff.amount_residual_signed_bs=valor
 
     def _compute_monto_conversion_tax(self):
@@ -68,7 +68,7 @@ class AccountMove(models.Model):
                 lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('name','<=',selff.date)],order='id ASC')
                 if lista_tasa:
                     for det in lista_tasa:
-                        valor=selff.amount_tax_signed*det.rate
+                        valor=selff.amount_tax_signed/round(det.rate_real,2)
             selff.amount_tax_bs=valor
 
 
@@ -87,7 +87,7 @@ class  AccountMoveLine(models.Model):
             lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('name','<=',selff.move_id.date)],order='id ASC')
             if lista_tasa:
                 for det in lista_tasa:
-                    valor=(selff.credit*det.rate)
+                    valor=(selff.credit/round(det.rate_real,2))
             selff.credit_aux=abs(valor)
 
     def _compute_monto_debit_conversion(self):
@@ -97,7 +97,7 @@ class  AccountMoveLine(models.Model):
             lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('name','<=',selff.move_id.date)],order='id ASC')
             if lista_tasa:
                 for det in lista_tasa:
-                    valor=(selff.debit*det.rate)
+                    valor=(selff.debit/round(det.rate_real,2))
             selff.debit_aux=abs(valor)
 
     def _compute_balance_conversion(self):
@@ -107,6 +107,6 @@ class  AccountMoveLine(models.Model):
             lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('name','<=',selff.move_id.date)],order='id ASC')
             if lista_tasa:
                 for det in lista_tasa:
-                    valor=(selff.balance*det.rate)
+                    valor=(selff.balance/round(det.rate_real,2))
             selff.balance_aux=abs(valor)
         

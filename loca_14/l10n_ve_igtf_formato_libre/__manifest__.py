@@ -13,7 +13,7 @@
     'website': 'http://soluciones-tecno.com/',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account','l10n_ve_modo_pago','l10n_ve_asientos_bs_$_account'],
+    'depends': ['base','account','l10n_ve_modo_pago','l10n_ve_asientos_bs_$_account','eu_multi_currency'],
 
     # always loaded
     'data': [

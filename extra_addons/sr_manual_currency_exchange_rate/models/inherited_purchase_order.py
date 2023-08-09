@@ -40,7 +40,14 @@ class PurchaseOrder(models.Model):
     @api.onchange('apply_manual_currency_exchange')
     def _onchange_apply_manual_currency_exchange(self):
         for rec in self:
-            rec.manual_currency_exchange_rate = self.env.company.currency_id.parent_id.rate
+            rec.manual_currency_exchange_rate = self.tasa_purchase_order() #self.env.company.currency_id.parent_id.rate
+
+    def tasa_purchase_order(self):
+        valor=1
+        busca=self.env['res.currency.rate'].search([('name','<=',self.date_order)],order='name desc',limit=1)
+        if busca:
+            valor=busca.rate_real
+        return valor
             
     def _prepare_invoice(self):
         result = super(PurchaseOrder, self)._prepare_invoice()

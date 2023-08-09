@@ -36,18 +36,18 @@ odoo.define('pos_show_dual_currency.OrderWidget', function(require) {
                     var show_currency_rate_real = parseFloat(this.env.pos.config.show_currency_rate_real)
                     
                     if(rate_company > show_currency_rate){
-                        total_currency = total / show_currency_rate_real;
+                        total_currency = 69;    //total / show_currency_rate_real;
                         taxes_currency = taxes / show_currency_rate_real;
                     }
                     else if(rate_company < show_currency_rate){
                         if(show_currency_rate>0){
-                            total_currency = total * show_currency_rate_real;
+                            total_currency = 13;     //total * show_currency_rate_real;
                             taxes_currency = taxes * show_currency_rate_real;
                         }
                     }
                     else{
-                        total_currency = total;
-                        taxes_currency = taxes;
+                        total_currency = 12;  //total;
+                        taxes_currency = 14;  //taxes;
                     }
     
                     this.state.currencyTotal = this.env.pos.format_currency_no_symbol(total_currency);

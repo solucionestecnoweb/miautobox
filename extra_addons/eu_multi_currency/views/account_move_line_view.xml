@@ -13,12 +13,12 @@
                     <field name="price_subtotal_ref" widget='monetary' options="{'currency_field': 'currency_id_dif'}"></field>
                 </xpath>
                 <xpath expr="//field[@name='line_ids']/tree//field[@name='credit']" position="after">
-                    <field name="debit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}"  sum="Total Debit REF"></field>
-                    <field name="credit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Total Credit REF"></field>
+                    <!--field name="debit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}"  sum="Total Debit REF"></field>
+                    <field name="credit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Total Credit REF"></field-->
                 </xpath>
                 <xpath expr="//field[@name='line_ids']/form//field[@name='credit']" position="after">
-                    <field name="debit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}"  ></field>
-                    <field name="credit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}" ></field>
+                    <!--field name="debit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}"  ></field>
+                    <field name="credit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}" ></field-->
                 </xpath>    
             </field>
         </record>
@@ -28,8 +28,8 @@
             <field name="inherit_id" ref="account.view_move_line_tree"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='credit']" position="after">
-                    <field name="credit_usd"  optional="show" string="Crédito Ref" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Total Credito Ref"></field>
-                    <field name="debit_usd"   optional="show" string="Débito Ref" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Total Debito Ref"></field>
+                    <!--field name="credit_usd"  optional="show" string="Crédito Ref" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Total Credito Ref"></field>
+                    <field name="debit_usd"   optional="show" string="Débito Ref" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Total Debito Ref"></field-->
                     <field name="balance_usd" optional="show" string="Balance Ref" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Total Debito Ref"></field>
                 </xpath>
             </field>

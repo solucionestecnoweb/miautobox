@@ -22,7 +22,7 @@ class PosOrder(models.Model):
             lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('hora','<=',selff.date_order)],order='id ASC')
             if lista_tasa:
                 for det in lista_tasa:
-                    valor=selff.amount_total*det.rate
+                    valor=selff.amount_total/round(det.rate_real,2)
             selff.amount_total_signed_aux_bs=valor
 
     """def _compute_monto_conversion(self):
@@ -49,7 +49,7 @@ class PosOrderLine(models.Model):
             lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('hora','<=',selff.order_id.date_order)],order='id ASC')
             if lista_tasa:
                 for det in lista_tasa:
-                    valor=selff.price_unit*det.rate
+                    valor=selff.price_unit/round(det.rate_real,2)
             selff.price_unit_aux=valor
 
     def _compute_valor2(self):
@@ -57,7 +57,7 @@ class PosOrderLine(models.Model):
             lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('hora','<=',selff.order_id.date_order)],order='id ASC')
             if lista_tasa:
                 for det in lista_tasa:
-                    valor=selff.price_subtotal*det.rate
+                    valor=selff.price_subtotal/round(det.rate_real,2)
             selff.sub_neto_aux=valor
 
     def _compute_valor3(self):
@@ -65,5 +65,5 @@ class PosOrderLine(models.Model):
             lista_tasa = selff.env['res.currency.rate'].search([('currency_id', '=', self.env.company.currency_secundaria_id.id),('hora','<=',selff.order_id.date_order)],order='id ASC')
             if lista_tasa:
                 for det in lista_tasa:
-                    valor=selff.price_subtotal_incl*det.rate
+                    valor=selff.price_subtotal_incl/round(det.rate_real,2)
             selff.sub_total_aux=valor
