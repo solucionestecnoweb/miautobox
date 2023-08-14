@@ -5,7 +5,7 @@
     "name": "Ampliar tamaño campo Code en almacen",
     "version": "14.0.1.0.1",
     "category": "app",
-    "author": "Ing Darrell Sojo",
+    "author": "Ing Darrell Sojo..",
     "website": "",
     "license": "AGPL-3",
     "depends": ['base', 'product','stock','sale','l10n_ve_res_currency'],
