@@ -218,7 +218,7 @@
                     <tbody>
                     <t t-foreach="docs.invoice_line_ids" t-as="o">
                     <tr style="font-size:14px;">
-                      <td><div align="center"><t t-esc="o.default_code"/></div></td>
+                      <td><div align="center"><t t-esc="o.product_id.default_code"/></div></td>
                       <td><div align="center"><t t-esc="o.integer_format(o.quantity)"/></div></td>
                       <td><div align="center"><t t-esc="o.product_id.name"/> </div></td>
                       <td><div align="center"><t t-esc="o.tax_ids.name"/> </div></td>
