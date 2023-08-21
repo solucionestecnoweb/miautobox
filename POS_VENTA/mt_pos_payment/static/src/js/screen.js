@@ -77,7 +77,8 @@ odoo.define('mt_pos_payment.screens', function (require) {
                         'product': order.orderlines.models[i].product.display_name.replace("&","**").replace("'","**").replace("#","**"),
                         'cantidad': order.orderlines.models[i].quantity,
                         'precio': order.orderlines.models[i].price,
-                        'impuesto': valor_impuesto
+                        'impuesto': valor_impuesto,
+                        'code':order.orderlines.models[i].product.default_code,
                     })
                     
                 }
@@ -95,7 +96,7 @@ odoo.define('mt_pos_payment.screens', function (require) {
                 var line_payments = JSON.stringify(payment_order_lines);
                 // window.open("http://localhost/fiscal_13/index2.php?cid=" + order.cid +" &numero_recibo=" + order.name + "&cliente=" + order.changed.client.name + "&telefono=" + order.changed.client.phone + "&direccion=" + order.changed.client.address + "&rif_cedula=" + order.changed.client.vat + "&lineas=" + enviar_lineas, "width=800,height=600,scrollbars=YES")
                 debugger;
-                window.open("http://localhost/impresora_fiscal/cargar.php?cid=" + order.cid +"&numero_recibo=" + order.name + "&cliente=" + order.changed.client.name + "&telefono=" + order.changed.client.phone + "&direccion=" + order.changed.client.address + "&rif_cedula=" + order.changed.client.vat + "&lineas=" + enviar_lineas+ "&payment_order_lines=" + line_payments +"&order_id="+666,"_blank", "width=786, height=786")
+                window.open("http://localhost:8080/impresora_fiscal/cargar.php?cid=" + order.cid +"&numero_recibo=" + order.name + "&cliente=" + order.changed.client.name + "&telefono=" + order.changed.client.phone + "&direccion=" + order.changed.client.address + "&rif_cedula=" + order.changed.client.vat + "&lineas=" + enviar_lineas+ "&payment_order_lines=" + line_payments +"&order_id="+666,"_blank", "width=786, height=786")
 
             }
             get orderAmountPlusTip() {
