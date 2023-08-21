@@ -16,12 +16,12 @@
                     <!-- <field name="tasa_del_dia_two" string="Tasa del día Ref" ></field> -->
                 </group>
             </xpath>
-            <xpath expr="//div[@name='journal_div']" position="attributes">
+            <!--xpath expr="//div[@name='journal_div']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//label[@for='journal_id']" position="attributes">
                 <attribute name="invisible">1</attribute>
-            </xpath>
+            </xpath-->
         </field>
     </record>
     <record id="account_move_form_inherit_tree_ref" model="ir.ui.view">

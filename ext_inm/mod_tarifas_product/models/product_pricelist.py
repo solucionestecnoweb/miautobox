@@ -24,7 +24,7 @@ class ProductPriceList(models.Model):
         busca=self.env['res.currency.rate'].search([('currency_id','=',self.currency_id_dif.id)],limit=1,order='hora desc')
         if busca:
             tasa=busca.rate_real
-        self.tasa_del_dia=tasa
+        self.tasa_del_dia=round(tasa,2)
 
     @api.onchange('currency_id_dif','tasa_del_dia')
     def recalcula(self):
@@ -33,7 +33,7 @@ class ProductPriceList(models.Model):
         if busca:
             tasa=busca.rate_real
         for item in self.item_ids:
-            item.fixed_price=item.fixed_price_ref*tasa
+            item.fixed_price=item.fixed_price_ref*round(tasa,2)
 
 class ProductPricelistItem(models.Model):
     _inherit = 'product.pricelist.item'

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data> 
+  <record id="paperformat_nota_entrega" model="report.paperformat">
+
+      <field name="default" eval="True"/>
+        <field name="name">A4 Nota de Entrega</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">279</field>
+        <field name="page_width">216</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">75</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <template id="report_invoice_with_payments_copy3">
+            <t t-call="web.html_container">
+              <t t-call="web.basic_layout" >
+                <div class="page">
+                  <table  width="100%">  
+
+           <!-- <tr >
+                      <td  align="left">
+                        <t t-if="docs.company_id.logo">  
+                            <img t-attf-src="data:image/*;base64,{{docs.company_id.logo}}" style="width:50%;"/>
+                        </t>
+                      </td>
+
+              </tr>-->
+        
+           <tr style="font-size:13px;">
+                  <tr style="font-size:13px;">
+                      <td align="left" >Cliente:</td>
+                      <td  align="left" ><t t-esc="docs.partner_id.name"/></td>
+
+                     
+                      <td align="right">Nota de Entrega:</td>
+                      <td  align="right"><t t-esc="docs.correlativo_nota_entrega"/></td>
+                    
+                  </tr> 
+
+                  <tr style="font-size:13px;">
+                      <td align="left" >R.I.F:</td>
+                      <td align="left" ><t t-esc="docs.doc_cedula(docs.partner_id.id)"/></td>
+
+                      <td  align="right">Cond.Pago:</td>
+                      <td  align="right"><t t-esc="docs.invoice_payment_term_id.name"/></td>
+
+                     
+                  </tr>
+
+                  <tr style="font-size:13px;">
+                   
+              
+                       <td align="left">Dirección:</td>
+                       <td align="left" ><t t-esc="docs.partner_id.street"/>;<t t-esc="docs.partner_id.street2"/></td>
+
+                      <td  align="right">Emisión:</td>
+                      <td  align="right"><t t-esc="docs.formato_fecha(docs.invoice_date)"/></td>
+                  </tr>
+
+                   <tr style="font-size:13px;">
+                        <td align="left" >Teléfono:</td>
+                        <td align="left" ><t t-esc="docs.partner_id.phone"/></td>
+
+                      <td  align="right">Vecimiento:</td>
+                      <td  align="right"><t t-esc="docs.formato_fecha(docs.invoice_date)"/></td>
+                   
+                  </tr>
+                   <tr style="font-size:13px;">
+                        <td align="left" ></td>
+                        <td align="left" ></td>
+
+                      <td  align="right">O.de Compra/Pedido:</td>
+                      <td  align="right"><t t-esc="docs.invoice_origin"/></td>
+                   
+                  </tr>
+              </tr>
+
+    </table>
+
+          <br/>
+
+
+
+          <table width="100%" class="table table-borderless m-0" style="font-size:12px;">
+   
+                    <thead  style="table-layout: fixed; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; border-top-width: 1px;" >
+                      <tr   align="center" style="font-size:12px;">
+                      
+                        <td>Cantidad</td>
+                        <td>Descripción</td>
+                        <td>I.V.A %</td>
+                        <td>Precio Neto</td>
+                        <td>Descuento %</td>
+                        <td>Total</td>
+                       
+                      </tr>
+                    </thead>
+
+ 
+
+                    <t t-set="acum_subtotal" t-value="0"/>
+                     <t t-set="acum_descuento" t-value="0"/>
+                    <t t-set="acum_alicuota_general" t-value="0"/>
+                    <t t-set="acum_alicuota_reducida" t-value="0"/>
+                    <t t-set="acum_alicuota_adicional" t-value="0"/>
+                    <t t-set="total_factura" t-value="0"/>
+
+
+                    <tbody>
+                    <t t-foreach="docs.invoice_line_ids" t-as="o">
+                    <tr style="font-size:12px;">
+
+                      <td><div align="center"><t t-esc="o.integer_format(o.quantity)"/></div></td>
+                      <td><div align="center"><t t-esc="o.product_id.name"/> </div></td>
+                      <td><div align="center"><t t-esc="o.tax_ids.name"/> </div></td>
+                      <td><div align="center"><t t-esc="o.float_format(o.price_unit)"/></div></td>
+                      <td><div align="center">
+                      <t t-if="o.discount">
+                        <t t-esc="o.discount"/> 
+                      </t>
+                      <t t-else="">
+                          <span>---</span>
+                        </t>
+                        <t t-set="acum_descuento" t-value="acum_descuento+o.discount /100 *o.price_unit *o.quantity"/>
+                      </div></td>
+                      <td><div align="center"><t t-esc="o.float_format(o.price_subtotal)"/>
+
+                          <t t-set="acum_subtotal" t-value="acum_subtotal+o.price_subtotal"/></div></td>
+                      <t t-if="o.tax_ids.aliquot== 'general' ">
+                        <t t-set="acum_alicuota_general" t-value="acum_alicuota_general+(o.price_total-o.price_subtotal)"/>
+                      </t>
+                      <t t-if="o.tax_ids.aliquot== 'reduced' ">
+                        <t t-set="acum_alicuota_reducida" t-value="acum_alicuota_reducida+(o.price_total-o.price_subtotal)"/>
+                      </t>
+                      <t t-if="o.tax_ids.aliquot== 'additional' ">
+                        <t t-set="acum_alicuota_adicional" t-value="acum_alicuota_adicional+(o.price_total-o.price_subtotal)"/>
+                      </t>
+
+                    </tr>
+                    </t>
+
+                    </tbody>
+          </table>
+            <br/>
+            <br/>
+
+     <div class="container" >
+              <div class="border-dark">
+              
+                <hr style="background-color: black;width=1%"></hr>
+                     <table width="100%" style="font-size:12px;" > 
+
+                        
+                            <tr >
+                                    <td class="text-left">Subtotal Exento:</td>
+                                    <td class="text-left"><t t-esc="docs.amount_exento" t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <td class="text-right">Descuento:&amp;nbsp;&amp;nbsp; </td>
+                                    <td class="text-right"><span><t t-esc="acum_descuento" /></span></td>
+                                    <td class="text-right">Subtotal:</td>
+                                    <td class="text-right"><t t-esc="docs.amount_untaxed" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                         
+                          
+                              
+                               <tr >
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-right">Base Imponible: </td>
+                                    <td class="text-right"><t t-esc="docs.amount_imponible" t-options='{"widget": "float", "precision": 2}'/></td>
+                                </tr>
+
+                               <tr>
+                                    
+                                    <td class="text-left">Recibido en Divisas:</td>
+                                    <td class="text-left"><t t-esc="docs.pago_usd_eq" t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <td class="text-right">Base Calculo igtf en Bs:&amp;nbsp;&amp;nbsp;</td>
+                                    <td class="text-right"><t t-esc="docs.impuesto_igtf" t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <td class="text-right">Impuesto I.V.A 16%: </td>
+                                    <td class="text-right"><t t-esc="acum_alicuota_general" t-options='{"widget": "float", "precision": 2}'/></td>  
+
+                               </tr>
+
+
+                              <tr>
+                              
+                                   <td class="text-left">Tasa:</td>
+                                   <td class="text-left"><t t-esc="docs.company_id.currency_secundaria_id.rate_real" t-options='{"widget": "float", "precision": 2}'/></td> 
+                                    <td class="text-right">Impuesto IGTF 3%:&amp;nbsp;&amp;nbsp;</td>
+                                    <td class="text-right"><t t-esc="docs.impuesto_igtf_eq" t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <td class="text-right">Total Factura: </td>
+                                    <td class="text-right"><t t-esc="docs.total_pagar" t-options='{"widget": "float", "precision": 2}'/></td>  
+                              </tr>
+
+
+                    </table>
+                    <br/>
+                    <br/>
+                   
+            </div>               
+        </div>
+                </div>  
+              </t>
+              </t>
+    </template>
+
+    <report
+            id="account_nota_entrega"
+            model="account.move"
+            string="Nota de Entrega"
+            report_type="qweb-pdf"
+            name="l10n_ve_formato_factura_nd_nc.report_invoice_with_payments_copy3"
+            file="l10n_ve_formato_factura_nd_nc.report_invoice_with_payments_copy3"
+            paperformat="l10n_ve_formato_factura_nd_nc.paperformat_nota_entrega"
+        />
+
+      
+  </data>
+</odoo>

@@ -46,7 +46,7 @@ class AccountMoveLine(models.Model):
         for record in self:
             record[("price_unit_ref")] = record['price_unit']
             if record.move_id.manual_currency_exchange_rate != 0 and record.display_type == False:
-                record[("price_unit_ref")] = record['price_unit']*record.move_id.manual_currency_exchange_rate if record['currency_id'] == self.env.company.currency_id else record['price_unit']/record.move_id.manual_currency_exchange_rate
+                record[("price_unit_ref")] = record['price_unit']/record.move_id.manual_currency_exchange_rate if record['currency_id'] == self.env.company.currency_id else record['price_unit']*record.move_id.manual_currency_exchange_rate
 
     @api.onchange('product_id','quantity','price_subtotal','move_id.manual_currency_exchange_rate')
     def onchange_product_id_ref(self):

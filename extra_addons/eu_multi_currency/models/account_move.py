@@ -49,7 +49,7 @@ class AccountMove(models.Model):
         for record in self:
             record[("amount_ref")]    = record['amount_total']
             if record.manual_currency_exchange_rate != 0:
-                record[("amount_ref")]    = record['amount_total']*record.manual_currency_exchange_rate if record['currency_id'] == self.env.company.currency_id else record['amount_total']/record.manual_currency_exchange_rate
+                record[("amount_ref")]    = record['amount_total']/record.manual_currency_exchange_rate if record['currency_id'] == self.env.company.currency_id else record['amount_total']*record.manual_currency_exchange_rate
                 record[("tasa_del_dia")]     = 1*record.manual_currency_exchange_rate
                 record[("tasa_del_dia_two")] = 1/record.manual_currency_exchange_rate
 
@@ -65,7 +65,7 @@ class AccountMove(models.Model):
         for record in self:
             record[("amount_residual_signed_ref")] = abs(record['amount_residual'])
             if record.manual_currency_exchange_rate != 0:
-                record[("amount_residual_signed_ref")] = abs(record['amount_residual'] * record.manual_currency_exchange_rate if self.env.company.currency_id == record.currency_id else record['amount_residual']/record.manual_currency_exchange_rate)
+                record[("amount_residual_signed_ref")] = abs(record['amount_residual'] / record.manual_currency_exchange_rate if self.env.company.currency_id == record.currency_id else record['amount_residual']*record.manual_currency_exchange_rate)
 
     def write(self,vals):
         #self._onchange_manual_currency_rate()

@@ -55,8 +55,8 @@ Permitiendo mostrar el total en otra divisa
                 'account_budget',
                 ],
     'data':[
-       'views/product_pricelist_view.xml',
-       'views/product_pricelist_item_view.xml',
+       #'views/product_pricelist_view.xml',
+       #'views/product_pricelist_item_view.xml',
        'views/res_currency_view.xml',
        'views/res_currency_rate_view.xml',
        'views/account_move_view.xml',

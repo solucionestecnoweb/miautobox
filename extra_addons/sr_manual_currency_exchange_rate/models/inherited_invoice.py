@@ -36,10 +36,17 @@ class AccountMove(models.Model):
     #        moneda = self.env['res.currency.rate'].search([('currency_id','=',171),('name','<=',rec.date)],order='name desc',limit=1).rate
     #        rec.manual_currency_exchange_rate = moneda
 
-    @api.onchange('apply_manual_currency_exchange')
+    @api.onchange('apply_manual_currency_exchange','invoice_date')
     def _onchange_apply_manual_currency_exchange(self):
         for rec in self:
-            rec.manual_currency_exchange_rate = self.env.company.currency_id.parent_id.rate
+            rec.manual_currency_exchange_rate = self.tasa_account_move()#self.env.company.currency_id.parent_id.rate
+
+    def tasa_account_move(self):
+        valor=1
+        busca=self.env['res.currency.rate'].search([('name','<=',self.invoice_date)],order='name desc',limit=1)
+        if busca:
+            valor=busca.rate_real
+        return valor
     
     @api.onchange('manual_currency_exchange_rate', 'apply_manual_currency_exchange','invoice_line_ids.price_unit','line_ids')
     def _onchange_manual_currency_rate(self):

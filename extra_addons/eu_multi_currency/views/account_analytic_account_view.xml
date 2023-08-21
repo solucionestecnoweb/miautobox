@@ -9,8 +9,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='balance']" position="after">
                     <field name="currency_id_dif" invisible="1" options="{'no_open': True, 'no_create_edit': True, 'no_quick_create': True, 'no_create': True}"></field>
-                    <field name="debit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Debit"/>
-                    <field name="credit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Credit"/>
+                    <!--field name="debit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Debit"/>
+                    <field name="credit_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Credit"/-->
                     <field name="balance_usd" widget='monetary' options="{'currency_field': 'currency_id_dif'}" sum="Balance"/>
                 </xpath>
             </field>

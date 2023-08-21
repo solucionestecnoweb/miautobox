@@ -45,12 +45,17 @@ class SaleOrderLine(models.Model):
 
     @api.depends('price_unit','order_id.manual_currency_exchange_rate','currency_id')
     def _compute_price_unit_ref(self):
+        """for rec in self:
+            if rec.order_id.currency_id.id!=rec.order_id.currency_id_dif.id:
+                rec.price_unit_ref=rec.price_unit/rec.order_id.manual_currency_exchange_rate
+            else:
+               rec.price_unit_ref=rec.price_unit""" 
 
         for record in self:  
             record[("price_unit_ref")]  = record['price_unit']
             if record.display_type == False: 
                 if record.order_id.manual_currency_exchange_rate != 0:
-                        record[("price_unit_ref")]    = record['price_unit']*record.order_id.manual_currency_exchange_rate if record['currency_id'] == self.env.company.currency_id else record['price_unit']/record.order_id.manual_currency_exchange_rate
+                        record[("price_unit_ref")]    = record['price_unit']/record.order_id.manual_currency_exchange_rate if record['currency_id'] == self.env.company.currency_id else record['price_unit']*record.order_id.manual_currency_exchange_rate
                         
     price_unit_ref     = fields.Float(string='Precio Ref', store=True,readonly=True, compute='_compute_price_unit_ref', tracking=4, default=0, invisible="1",digits=(20,4))
     price_subtotal_ref = fields.Float(string='Subtotal Ref',store=True, readonly=True, default=0,compute='_compute_price_subtotal_ref',digits=(20,4))

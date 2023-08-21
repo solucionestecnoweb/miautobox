@@ -9,10 +9,20 @@ class CurrencyRate(models.Model):
 
     @api.onchange('rate_real', 'hora')
     def conversion_tarifas(self):
+        #raise UserError(_('tasa = %s')%dolar)
+        if self.rate_real!=0:
+            tasa=self.rate_real
+        else:
+            lista_tasa = self.env['res.currency.rate'].search([],order='hora desc',limit=1)
+            tasa=lista_tasa.rate_real
         lista=self.env['product.pricelist.item'].search([])
         if lista:
             for det in lista:
-                det.fixed_price=det.fixed_price_ref*self.rate_real
+                det.fixed_price=det.fixed_price_ref*round(tasa,2)
+
+    def central_bank(self):
+        super().central_bank()
+        self.conversion_tarifas()
 
 
 class Currency(models.Model):
@@ -23,4 +33,4 @@ class Currency(models.Model):
         lista=self.env['product.pricelist.item'].search([])
         if lista:
             for det in lista:
-                det.fixed_price=det.fixed_price_ref*self.rate_real
+                det.fixed_price=det.fixed_price_ref*round(self.rate_real,2)
