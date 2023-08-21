@@ -194,7 +194,7 @@
    
                     <thead  style="table-layout: fixed; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; border-top-width: 1px;" >
                       <tr   align="center" style="font-size:12px;">
-                      
+                        <td>Cod.</td>
                         <td>Cantidad</td>
                         <td>Descripción</td>
                         <td>I.V.A %</td>
@@ -218,7 +218,7 @@
                     <tbody>
                     <t t-foreach="docs.invoice_line_ids" t-as="o">
                     <tr style="font-size:14px;">
-
+                      <td><div align="center"><t t-esc="o.default_code"/></div></td>
                       <td><div align="center"><t t-esc="o.integer_format(o.quantity)"/></div></td>
                       <td><div align="center"><t t-esc="o.product_id.name"/> </div></td>
                       <td><div align="center"><t t-esc="o.tax_ids.name"/> </div></td>
@@ -300,7 +300,7 @@
                               <tr>
                               
                                 <td class="text-left">Tasa:</td>
-                                <td class="text-left"><t t-esc="docs.company_id.currency_secundaria_id.rate_real" t-options='{"widget": "float", "precision": 2}'/></td>
+                                <td class="text-left"><t t-esc="docs.tasa_al_dia" t-options='{"widget": "float", "precision": 2}'/></td>
                                 <td class="text-right">Impuesto IGTF 3%:&amp;nbsp;&amp;nbsp;</td>
                                 <td class="text-right"><t t-esc="(docs.fact_div_line(docs.impuesto_igtf))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;Bs</td>
                                 <td class="text-right">Total Factura: </td>
