@@ -317,12 +317,12 @@
                         <!--aplique cuabdo es una nota de credito  -->
                          <t t-if="docs.move_type== 'out_refund' ">
                           <td class="text-left">Aplica a:</td>
-                          <td class="text-right"><t t-esc="docs.ref"/></td>   
+                          <td class="text-right"><t t-esc="docs.invoice_number_cli"/></td>   
                          </t>
                          <!--aplique cuabdo es una nota de debito  -->
                           <t t-elif="docs.move_type== 'out_receipt' ">
                             <td class="text-left">Aplica a:</td>
-                            <td class="text-right"><t t-esc="docs.ref"/></td>   
+                            <td class="text-right"><t t-esc="docs.invoice_number_cli"/></td>   
                          </t>
                       </tr>
                     </tabla>
