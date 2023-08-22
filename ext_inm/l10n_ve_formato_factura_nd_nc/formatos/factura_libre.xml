@@ -286,27 +286,47 @@
                                 </tr>
 
                                <tr>
-                                   <!--solo para nota de debito y factura   -->
-                                    <t t-if="docs.move_type== 'out_refund' and docs.move_type == 'out_invoice'">
+                                <t t-if="docs.move_type== 'out_refund' and docs.move_type == 'out_receipt'">
                                     <td class="text-left">Recibido en Divisas:</td>
                                     <td class="text-left"><t t-esc="(docs.fact_div_line1(docs.pago_usd_eq))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;$</td>
                                     <td class="text-right">Base Calculo IGTF en Bs:&amp;nbsp;&amp;nbsp;</td>
                                     <td class="text-right"><t t-esc="(docs.fact_div_line(docs.pago_divisa))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;Bs</td>
-                                  </t>
                                     <td class="text-right">Impuesto I.V.A 16%: </td>
-                                    <td class="text-right"><t t-esc="(docs.fact_div_line(acum_alicuota_general))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;Bs</td>  
+                                    <td class="text-right"><t t-esc="(docs.fact_div_line(acum_alicuota_general))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;Bs</td> 
+                                </t> 
+
+                                 <t t-if="docs.move_type== 'out_invoice' ">
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-right"></td>
+                                    <td class="text-right"></td>
+                                    <td class="text-right">Impuesto I.V.A 16%: </td>
+                                    <td class="text-right"><t t-esc="(docs.fact_div_line(acum_alicuota_general))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;Bs</td> 
+                                </t> 
 
                                </tr>
 
 
                               <tr>
-                              
+                               <t t-if="docs.move_type== 'out_refund' and docs.move_type == 'out_receipt'">
                                 <td class="text-left">Tasa:</td>
                                 <td class="text-left"><t t-esc="docs.tasa_del_dia" t-options='{"widget": "float", "precision": 2}'/></td>
                                 <td class="text-right">Impuesto IGTF 3%:&amp;nbsp;&amp;nbsp;</td>
                                 <td class="text-right"><t t-esc="(docs.fact_div_line(docs.impuesto_igtf))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;Bs</td>
                                 <td class="text-right">Total Factura: </td>
-                                <td class="text-right"><t t-esc="(docs.fact_div_line(docs.total_pagar))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;Bs</td>  
+                                <td class="text-right"><t t-esc="(docs.fact_div_line(docs.total_pagar))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;Bs</td> 
+
+                              </t> 
+                                <t t-if="docs.move_type== 'out_invoice'">
+                                  <td class="text-left">Tasa:</td>
+                                  <td class="text-left"><t t-esc="docs.tasa_del_dia" t-options='{"widget": "float", "precision": 2}'/></td>
+                                  <td class="text-right"></td>
+                                  <td class="text-right"></td>
+                                  <td class="text-right">Total Factura: </td>
+                                  <td class="text-right"><t t-esc="(docs.fact_div_line(docs.total_pagar))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;Bs</td> 
+
+                              </t> 
+
                               </tr>
                     
                     </table>
@@ -314,15 +334,15 @@
                     <br/>
                     <tabla style="font-size:14px;">
                       <tr>
-                        <!--aplique cuabdo es una nota de credito  -->
+                        <!--aplique cuando es una nota de credito  -->
                          <t t-if="docs.move_type== 'out_refund' ">
                           <td class="text-left">Aplica a:</td>
-                          <td class="text-right"><t t-esc="docs.invoice_number_cli"/></td>   
+                          <td class="text-right">&amp;nbsp;<t t-esc="docs.invoice_number_cli"/></td>   
                          </t>
-                         <!--aplique cuabdo es una nota de debito  -->
+                         <!--aplique cuando es una nota de debito  -->
                           <t t-elif="docs.move_type== 'out_receipt' ">
                             <td class="text-left">Aplica a:</td>
-                            <td class="text-right"><t t-esc="docs.invoice_number_cli"/></td>   
+                            <td class="text-right">&amp;nbsp;<t t-esc="docs.invoice_number_cli"/></td>   
                          </t>
                       </tr>
                     </tabla>
@@ -332,9 +352,9 @@
                     <br/>
                     <table>
                       <tr>
-                              
-                      <td><div align="justify" style="font-size:14px;">Se percibirá el IGTF Alicuota de 3% sobre el pago que se realice mediante las formas descritas en el artículo 4, numeral 6 de la Ley del I.G.T.F, según providencia SNAT/2022/000013</div></td>
-                                    
+                       <t t-if="docs.move_type== 'out_refund' and docs.move_type == 'out_receipt'">        
+                          <td><div align="justify" style="font-size:14px;">Se percibirá el IGTF Alicuota de 3% sobre el pago que se realice mediante las formas descritas en el artículo 4, numeral 6 de la Ley del I.G.T.F, según providencia SNAT/2022/000013</div></td>
+                      </t>            
                       </tr>
                     </table>
             </div>               
