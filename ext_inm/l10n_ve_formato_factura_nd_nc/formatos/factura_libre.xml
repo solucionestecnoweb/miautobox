@@ -286,7 +286,7 @@
                                 </tr>
 
                                <tr>
-                                <t t-if="docs.move_type== 'out_refund' and docs.move_type == 'out_receipt'">
+                                <t t-if="docs.move_type== 'out_refund' or docs.move_type == 'out_receipt'">
                                     <td class="text-left">Recibido en Divisas:</td>
                                     <td class="text-left"><t t-esc="(docs.fact_div_line1(docs.pago_usd_eq))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;$</td>
                                     <td class="text-right">Base Calculo IGTF en Bs:&amp;nbsp;&amp;nbsp;</td>
@@ -308,7 +308,7 @@
 
 
                               <tr>
-                               <t t-if="docs.move_type== 'out_refund' and docs.move_type == 'out_receipt'">
+                               <t t-if="docs.move_type== 'out_refund' or docs.move_type == 'out_receipt'">
                                 <td class="text-left">Tasa:</td>
                                 <td class="text-left"><t t-esc="docs.tasa_del_dia" t-options='{"widget": "float", "precision": 2}'/></td>
                                 <td class="text-right">Impuesto IGTF 3%:&amp;nbsp;&amp;nbsp;</td>
@@ -352,7 +352,7 @@
                     <br/>
                     <table>
                       <tr>
-                       <t t-if="docs.move_type== 'out_refund' and docs.move_type == 'out_receipt'">        
+                       <t t-if="docs.move_type== 'out_refund' or docs.move_type == 'out_receipt'">        
                           <td><div align="justify" style="font-size:14px;">Se percibirá el IGTF Alicuota de 3% sobre el pago que se realice mediante las formas descritas en el artículo 4, numeral 6 de la Ley del I.G.T.F, según providencia SNAT/2022/000013</div></td>
                       </t>            
                       </tr>
