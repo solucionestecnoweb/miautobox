@@ -286,11 +286,13 @@
                                 </tr>
 
                                <tr>
-                                    
+                                   <!--solo para nota de debito y factura   -->
+                                    <t t-if="docs.move_type== 'out_refund' and docs.move_type == 'out_invoice'">
                                     <td class="text-left">Recibido en Divisas:</td>
-                                    <td class="text-left"><t t-esc="(docs.fact_div_line1(docs.pago_usd_eq))" t-options='{"widget": "float", "precision": 2}'/>$</td>
-                                    <td class="text-right">Base Calculo igtf en Bs:&amp;nbsp;&amp;nbsp;</td>
+                                    <td class="text-left"><t t-esc="(docs.fact_div_line1(docs.pago_usd_eq))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;$</td>
+                                    <td class="text-right">Base Calculo IGTF en Bs:&amp;nbsp;&amp;nbsp;</td>
                                     <td class="text-right"><t t-esc="(docs.fact_div_line(docs.pago_divisa))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;Bs</td>
+                                  </t>
                                     <td class="text-right">Impuesto I.V.A 16%: </td>
                                     <td class="text-right"><t t-esc="(docs.fact_div_line(acum_alicuota_general))" t-options='{"widget": "float", "precision": 2}'/>&amp;nbsp;Bs</td>  
 

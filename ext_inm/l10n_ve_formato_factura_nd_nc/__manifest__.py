@@ -14,13 +14,14 @@
     'website': 'http://soluciones-tecno.com/',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account','l10n_ve_igtf_formato_libre','ext_extension_nota_debit'],
+    'depends': ['base','account','l10n_ve_igtf_formato_libre','ext_extension_nota_debit','account_debit_note'],
 
     # always loaded
     'data': [
         'formatos/account_move_view.xml',
         'formatos/factura_libre.xml',
         'formatos/nota_entrega.xml' ,
+        'views/inherit_nota_debit.xml' ,
 
      
     ],
