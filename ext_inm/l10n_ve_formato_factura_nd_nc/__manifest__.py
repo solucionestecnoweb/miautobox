@@ -22,6 +22,7 @@
         'formatos/factura_libre.xml',
         'formatos/nota_entrega.xml' ,
         'views/inherit_nota_debit.xml' ,
+        'views/inherit_nota_credito.xml' ,
 
      
     ],
