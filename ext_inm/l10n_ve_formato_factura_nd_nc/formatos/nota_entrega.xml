@@ -121,7 +121,7 @@
                       <td><div align="center"><t t-esc="o.integer_format(o.quantity)"/></div></td>
                       <td><div align="center"><t t-esc="o.product_id.name"/> </div></td>
                       <td><div align="center"><t t-esc="o.tax_ids.name"/> </div></td>
-                      <td><div align="center"><t t-esc="o.float_format(o.price_unit)"/></div><t t-esc="docs.currency_id.symbol"/></td>
+                      <td><div align="center"><t t-esc="o.float_format(o.price_unit)"/><t t-esc="docs.currency_id.symbol"/></div></td>
                       <td><div align="center">
                       <t t-if="o.discount">
                         <t t-esc="o.discount"/> 
@@ -133,7 +133,7 @@
                       </div></td>
                       <td><div align="center"><t t-esc="o.float_format(o.price_subtotal)"/>
 
-                          <t t-set="acum_subtotal" t-value="acum_subtotal+o.price_subtotal"/></div><t t-esc="docs.currency_id.symbol"/></td>
+                          <t t-set="acum_subtotal" t-value="acum_subtotal+o.price_subtotal"/><t t-esc="docs.currency_id.symbol"/></div></td>
                       <t t-if="o.tax_ids.aliquot== 'general' ">
                         <t t-set="acum_alicuota_general" t-value="acum_alicuota_general+(o.price_total-o.price_subtotal)"/>
                       </t>
