@@ -1,4 +1,4 @@
-odoo.define("point_of_sale_turned_mobile_payment_ve.models", (require) => {
+odoo.define("point_of_sale_mobile_payment_p2c.models", (require) => {
     "use strict";
 
 

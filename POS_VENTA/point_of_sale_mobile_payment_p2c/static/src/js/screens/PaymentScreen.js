@@ -1,5 +1,5 @@
 odoo.define(
-  "point_of_sale_turned_mobile_payment_ve.PaymentScreen",
+  "point_of_sale_mobile_payment_p2c.PaymentScreen",
   (require) => {
     "use strict";
 

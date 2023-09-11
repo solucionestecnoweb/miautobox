@@ -1,5 +1,5 @@
 odoo.define(
-  "point_of_sale_turned_mobile_payment_ve.print_receipt_mobile_payment", function (require) {
+  "point_of_sale_mobile_payment_p2c.print_receipt_mobile_payment", function (require) {
     "use strict";
 
     const ReceiptScreen = require("point_of_sale.ReceiptScreen");
