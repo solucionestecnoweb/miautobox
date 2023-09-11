@@ -10,7 +10,7 @@
         'point_of_sale',
     ],
     'data': [
-        'data/data.xml',
+        # 'data/data.xml',
         'views/assets.xml',
         'views/pos_payment_method.xml',
         # 'views/point_of_sale.xml',
