@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="view_pos_payment_tree_inh" model="ir.ui.view">
+        <field name="name">pos.payment.view.form.inherit</field>
+        <field name="model">pos.payment</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_payment_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="line_is_turned_mobile_payment" />
+            </xpath>
+            <xpath expr="//field[@name='amount']" position="before">
+                <field name="mobile_payment_bank_from" />
+                <field name="ci_ve" />
+                <field name="phone" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="pos_payment_turned_mobile_payment_action" model="ir.actions.act_window">
+        <field name="name">Pago Moviles</field>
+        <field name="res_model">pos.payment</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[('line_is_turned_mobile_payment', '=', True)]</field>
+        <field name="context">{'create': False, 'edit': False}</field>
+    </record>
+    
+
+    <menuitem
+        id="menu_pos_payment_turned_mobile_payment"
+        name="Pago Moviles"
+        parent="point_of_sale.menu_point_rep"
+        action="pos_payment_turned_mobile_payment_action"
+        sequence="50" />
+
+</odoo>

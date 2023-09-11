@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="MobilePaymentPopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-couponproducts">
+                <p class="title">
+                    <t t-esc="props.title" />
+                </p>
+
+                <form class="body" style="margin: 12px 0;">
+                    <div style="display: flex;padding: 20px;">
+                        <!-- <div>
+                            <label for="bank" style="display: block;margin-bottom: 12px;">Banco Receptor</label>
+                            <select style="padding: 12px;" id="bank-payment-mobile">
+                                <option t-att-value="''"/>
+                                <t t-foreach="env.pos.get_order().get_banks_mobile_payment()" t-as="bk">
+                                    <option t-att-value="bk[0]" t-att-selected="bk[0] === props.bankPaymentMobileCode"><t t-esc="bk.join(' ')"/></option>
+                                </t>
+                            </select>
+                            <p t-if="props.errorInputBank" style="color: red;font-size: 13px;">El siguiente Campo debe ser especificado</p>
+                        </div> -->
+                        <div>
+                            <!-- <div>
+                                <label for="amount" style="display: block;margin-bottom: 12px;">Monto $.</label>
+                                <input type="number" id="payment-mobile-amount" t-att-value="props.amountPaymentMobile" step="0.01" t-on-change="_onChange"/>
+                                <p t-if="props.errorInputAmount" style="color: red;font-size: 13px;">El siguiente Campo debe ser especificado</p>
+                            </div> -->
+                            <label for="ci" style="display: block;margin-bottom: 12px;">Cedula</label>
+                            <input type="number" id="payment-mobile-ci" t-att-value="props.ci_ve"/>
+                            <p t-if="props.errorInputCi" style="color: red;font-size: 13px;">El siguiente Campo debe ser especificado</p>
+                        </div>
+                    </div>
+                    <div style="display: flex;padding: 20px;">
+                        <!-- <div>
+                            <label for="amount" style="display: block;margin-bottom: 12px;">Telefono</label>
+                            <input type="phone" id="payment-mobile-phone" t-att-value="props.phone"/>
+                            <p t-if="props.errorInputPhone" style="color: red;font-size: 13px;">El siguiente Campo debe ser especificado</p>
+                        </div> -->
+                        <div>
+                            <label for="amount" style="display: block;margin-bottom: 12px;">Monto $.</label>
+                            <input type="number" id="payment-mobile-amount" t-att-value="props.amountPaymentMobile" step="0.01" t-on-change="_onChange"/>
+                            <p t-if="props.errorInputAmount" style="color: red;font-size: 13px;">El siguiente Campo debe ser especificado</p>
+                        </div>
+                    </div>
+                </form>
+                <div class="footer">
+                    <div class="button cancel" t-on-click="close">
+                        Cerrar
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancelar
+                    </div>
+                    <div class="button load" t-on-click="confirmLoad">
+                        <t t-esc="props.confirmText" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

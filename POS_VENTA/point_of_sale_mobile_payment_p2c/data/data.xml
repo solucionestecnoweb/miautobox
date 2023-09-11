@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <data noupdate="1">
+
+        <record id="turned_mobile_payment" model="pos.payment.method">
+            <field name="name">Pago Movil P2C</field>
+            <field name="is_turned_mobile_payment" eval="1"/>
+        </record>
+
+    </data>
+
+</odoo>

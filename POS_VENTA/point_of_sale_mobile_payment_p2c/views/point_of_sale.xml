@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <record id="view_pos_pos_form_inherit" model="ir.ui.view">
+        <field name="name">pos.order.view.form.inh</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_ids']/tree" position="inside">
+                <field name="mobile_payment_bank_from" />
+                <field name="ci_ve" />
+                <field name="phone" />
+                <field name="line_is_turned_mobile_payment" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
