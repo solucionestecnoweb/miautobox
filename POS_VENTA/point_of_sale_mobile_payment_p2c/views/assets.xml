@@ -3,10 +3,10 @@
     
     <template id="assets_point_of_sale_inh" inherit_id="point_of_sale.assets">
         <xpath expr="." position="inside">
-            <script type="text/javascript" src="/point_of_sale_turned_mobile_payment_ve/static/src/js/models.js"/>
-            <script type="text/javascript" src="/point_of_sale_turned_mobile_payment_ve/static/src/js/screens/PaymentScreen.js"/>
-            <!-- <script type="text/javascript" src="/point_of_sale_turned_mobile_payment_ve/static/src/js/popup/MobilePaymentPopup.js"/> -->
-            <script type="text/javascript" src="/point_of_sale_turned_mobile_payment_ve/static/src/js/screens/ReceiptScreen.js"></script>
+            <script type="text/javascript" src="/point_of_sale_mobile_payment_p2c/static/src/js/models.js"/>
+            <script type="text/javascript" src="/point_of_sale_mobile_payment_p2c/static/src/js/screens/PaymentScreen.js"/>
+            <!-- <script type="text/javascript" src="/point_of_sale_mobile_payment_p2c/static/src/js/popup/MobilePaymentPopup.js"/> -->
+            <script type="text/javascript" src="/point_of_sale_mobile_payment_p2c/static/src/js/screens/ReceiptScreen.js"></script>
 
         </xpath>
     </template>
