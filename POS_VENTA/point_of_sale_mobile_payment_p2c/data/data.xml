@@ -6,6 +6,7 @@
         <record id="turned_mobile_payment" model="pos.payment.method">
             <field name="name">Pago Movil P2C</field>
             <field name="is_turned_mobile_payment" eval="1"/>
+            <field name="receivable_account_id" eval="0"/>
         </record>
 
     </data>
