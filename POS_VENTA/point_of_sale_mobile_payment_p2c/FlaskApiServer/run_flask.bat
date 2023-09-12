@@ -1,2 +1,2 @@
 @echo off
-python "C:\Users\subone\Desktop\FlaskApiServer\txt_read.py"
+python "C:\Users\subone\Desktop\FlaskApiServer\txt_read.pyw"
