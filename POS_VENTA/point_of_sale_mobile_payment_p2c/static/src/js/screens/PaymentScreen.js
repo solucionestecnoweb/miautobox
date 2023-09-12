@@ -70,12 +70,12 @@ odoo.define(
             }
 
             if (due > 0 || change > 0) {
+
               const requestOptions = {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
                 },
-
                 body: JSON.stringify({
                   accion: change > 0 ? "cambio" : "tarjeta",
                   montoTransaccion: change > 0 ? change : due,
@@ -83,6 +83,7 @@ odoo.define(
                   tipoMoneda: "VES",
                 }),
               };
+             
 
               const response = await fetch(
                 "http://localhost:8085/vpos/metodo",
@@ -92,15 +93,40 @@ odoo.define(
               const data = await response.json();
 
               let formatText;
+              var route = data.nombreVoucher
               if (data.nombreVoucher) {
-                let dataTxt = await rpc.query({
-                  model: "pos.order",
-                  method: "read_txt_mobile_payment",
+                  // let dataTxt = await rpc.query({
+                  //   model: "pos.order",
+                  //   method: "read_txt_mobile_payment",
 
-                  args: [data.nombreVoucher],
-                });
+                  //   args: [data.nombreVoucher],
+                  // });
                 debugger;
-                formatText = dataTxt.split("\n");
+
+
+                const requestOptionsPrint = {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+  
+           
+             
+                  body: JSON.stringify({
+                    route
+                  }),
+                };
+                debugger;
+                const responsePrint = await fetch(
+                  "http://localhost:5000/api/file",
+                  requestOptionsPrint
+                );
+                const dataPrint = await responsePrint.text();
+          
+                
+                
+        
+                formatText = dataPrint.split("\n");
                 let formatTextLine;
                 if (formatText) {
                   formatTextLine = "";
