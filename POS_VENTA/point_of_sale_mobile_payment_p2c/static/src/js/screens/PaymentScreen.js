@@ -154,7 +154,7 @@ odoo.define(
                   line.line_is_turned_mobile_payment = true;
 
                   this.currentOrder.receipt_change_mobile_payment =
-                    formatTextLine || false;
+                    formatTextLine || '';
                 } else {
         
                   await this.showPopup("ErrorPopup", {

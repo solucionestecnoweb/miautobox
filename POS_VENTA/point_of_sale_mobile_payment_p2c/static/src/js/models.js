@@ -32,7 +32,7 @@ odoo.define("point_of_sale_mobile_payment_p2c.models", (require) => {
             _super_order.initialize.apply(this,arguments);
             this.is_turned_mobile_payment_order = this.is_turned_mobile_payment_order || false;
             this.show_payment_mobile_option = this.show_payment_mobile_option || false
-            this.receipt_change_mobile_payment = this.receipt_change_mobile_payment || false
+            this.receipt_change_mobile_payment = this.receipt_change_mobile_payment || ''
             // this.show_payment_change_mobile_active = this.show_payment_change_mobile_active || false
             
         },
