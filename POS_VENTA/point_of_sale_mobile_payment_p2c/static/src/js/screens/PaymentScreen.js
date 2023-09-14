@@ -47,10 +47,10 @@ odoo.define(
         async _onClickMobilePayment() {
           try {
             debugger;
-            let change = this.currentOrder.get_change();
-            let due = this.currentOrder.get_due();
+            let change =  this.currentOrder.get_change().toFixed(2)
+            let due =  this.currentOrder.get_due().toFixed(2)
             let client = this.currentOrder.get_client();
-
+         
             if (!client) {
               this.showPopup("ErrorPopup", {
                 title: this.env._t("Cliente requerido"),
@@ -70,7 +70,7 @@ odoo.define(
             }
 
             if (due > 0 || change > 0) {
-
+              let vat = this.currentOrder.get_client().vat
               const requestOptions = {
                 method: "POST",
                 headers: {
@@ -79,7 +79,7 @@ odoo.define(
                 body: JSON.stringify({
                   accion: change > 0 ? "cambio" : "tarjeta",
                   montoTransaccion: change > 0 ? change : due,
-                  cedula: this.currentOrder.get_client().vat,
+                  cedula: vat.replace(/[a-zA-Z]/g, ''),
                   tipoMoneda: "VES",
                 }),
               };
