@@ -13,7 +13,6 @@ odoo.define('pos_show_dual_currency.PaymentScreen', function(require) {
             }
 
             _updateSelectedPaymentline() {
-                debugger;
                 if(this.selectedPaymentLine && !this.selectedPaymentLine.payment_method.is_dollar_payment){
                     super._updateSelectedPaymentline()
                 }
