@@ -18,14 +18,6 @@ odoo.define('pos_show_dual_currency.OrderWidget', function(require) {
             _updateSummary() {
                 console.log('_updateSummary');
                 
-                if (this.order) {
-
-                    if (!this.order.get_orderlines().length) {
-                        return;
-                    }
-                }
-                const current = Component.current;
-
                 const total = this.order ? this.order.get_total_with_tax() : 0;
                 const taxes = this.order ? total - this.order.get_total_without_tax() : 0;
                 if(this.env.pos.config.show_dual_currency){
