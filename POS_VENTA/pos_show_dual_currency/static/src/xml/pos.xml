@@ -279,12 +279,7 @@
                     /$
                     <t t-esc="env.pos.format_currency_no_symbol(line.get_amount() / env.pos.config.show_currency_rate_real)" />
                 </span>
-                <span style="color: red; font-size: small">
-                    <t t-if="env.pos.get_order().selected_paymentline.payment_method.is_dollar_payment">
-                        /IGTF Bs.
-                        <t t-esc="env.pos.format_currency_no_symbol(line.get_amount() * line.payment_method.porcentage / 100)" />
-                    </t>
-                </span>
+              
             </div>
         </xpath>
         <xpath expr="//t[@t-else='']//div[hasclass('payment-amount')]" position="replace">
